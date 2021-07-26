@@ -67,21 +67,25 @@ const HomePage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader class="ion-no-border">
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton />
+            <IonMenuButton color="light" />
           </IonButtons>
-          <IonTitle>HOME PAGE</IonTitle>
+          <IonTitle>STUDYPELAGO</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen className="ion-padding">
         <IonButton routerLink={"/profile"}>Profile</IonButton>
 
+        <pre>
+          Welcome back, {userProfile?.firstName} {userProfile?.lastName}
+        </pre>
+        <h6>Role: {userProfile?.role}</h6>
+
         {/* use firebase auth api to get current user, and
          render the json response */}
-
         <pre>{JSON.stringify(userProfile, null, 2)}</pre>
 
         <IonButton onClick={() => doLogout()}>SIGN OUT</IonButton>

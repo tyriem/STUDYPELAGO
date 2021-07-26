@@ -36,6 +36,7 @@ import CreateAccountPage from "./pages/auth/CreateAccountPage";
 import { useEffect, useState } from "react";
 import { firebaseAuth } from "./store/firebase";
 import DetailPage from "./pages/ProfilePage";
+import StudyPage from "./pages/StudyPage";
 
 const App: React.FC = () => {
   const [session, setSession] = useState<any>(null);
@@ -91,6 +92,9 @@ const App: React.FC = () => {
               <CreateAccountPage />
             </Route>
             <Route path="/profile" exact={true}>
+              <DetailPage />
+            </Route>
+            <Route path="/study" exact={true} component={StudyPage}>
               <DetailPage />
             </Route>
           </IonRouterOutlet>

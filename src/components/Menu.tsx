@@ -2,6 +2,7 @@ import {
   IonButton,
   IonContent,
   IonIcon,
+  IonImg,
   IonItem,
   IonLabel,
   IonList,
@@ -16,6 +17,8 @@ import {
   archiveOutline,
   archiveSharp,
   bookmarkOutline,
+  compassOutline,
+  compassSharp,
   heartOutline,
   heartSharp,
   homeOutline,
@@ -32,6 +35,9 @@ import {
 import "./Menu.css";
 import { firebaseAuth } from "../store/firebase";
 
+// import img
+import iconImg from "../assets/img/user-icon.png";
+
 interface AppPage {
   url: string;
   iosIcon: string;
@@ -47,10 +53,10 @@ const appPages: AppPage[] = [
     mdIcon: homeSharp,
   },
   {
-    title: "Inbox",
-    url: "/pages/inbox",
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp,
+    title: "Study Island",
+    url: "/pages/study",
+    iosIcon: compassOutline,
+    mdIcon: compassSharp,
   },
   {
     title: "Favorites",
@@ -87,11 +93,13 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Menu</IonListHeader>
+          <IonListHeader>
+            <IonImg src={iconImg}>Profile</IonImg>
+          </IonListHeader>
           {/* DISPLAY EMAIL  */}
           <IonNote>
             <IonButton routerLink={"/profile"}>
-              <h2>{firebaseAuth.currentUser?.email}</h2>
+              <h6>{firebaseAuth.currentUser?.email}</h6>
             </IonButton>
           </IonNote>{" "}
           {/* ELVIS OP OPTION  */}

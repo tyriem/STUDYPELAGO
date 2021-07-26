@@ -12,7 +12,7 @@ import { useParams } from "react-router";
 import { firebaseAuth, firebaseApp } from "../store/firebase";
 import "./Page.css";
 
-const ProfilePage: React.FC = () => {
+const StudyPage: React.FC = () => {
   const { firstName } = useParams<{ firstName: string }>();
 
   // get user profile information
@@ -30,22 +30,20 @@ const ProfilePage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Profile, {firebaseAuth.currentUser?.uid}</IonTitle>
-          <IonTitle>WELCOME, {firstName}</IonTitle>
+          <IonTitle>STUDY ISLAND</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">
-              Profile Page: {firebaseAuth.currentUser?.email}
-            </IonTitle>
+            <IonTitle size="large">STUDY ISLAND</IonTitle>
           </IonToolbar>
         </IonHeader>
+        WELCOME TO YOUR STUDY ISLAND, {firstName}
       </IonContent>
     </IonPage>
   );
 };
 
-export default ProfilePage;
+export default StudyPage;
