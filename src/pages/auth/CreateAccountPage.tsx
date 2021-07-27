@@ -199,17 +199,17 @@ const CreateAccountPage: React.FC = () => {
 
             <IonItem>
               <IonLabel>Student</IonLabel>
-              <IonRadio slot="start" value="student" />
+              <IonRadio slot="start" value="Student" />
             </IonItem>
 
             <IonItem>
               <IonLabel>Parent</IonLabel>
-              <IonRadio slot="start" value="parent" />
+              <IonRadio slot="start" value="Parent" />
             </IonItem>
 
             <IonItem>
               <IonLabel>Tutor</IonLabel>
-              <IonRadio slot="start" value="tutor" />
+              <IonRadio slot="start" value="Tutor" />
             </IonItem>
           </IonRadioGroup>
         </IonItem>

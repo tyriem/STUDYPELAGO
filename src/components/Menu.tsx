@@ -10,6 +10,7 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
+  useIonAlert,
 } from "@ionic/react";
 
 import { useLocation } from "react-router-dom";
@@ -17,6 +18,8 @@ import {
   archiveOutline,
   archiveSharp,
   bookmarkOutline,
+  calendarOutline,
+  calendarSharp,
   compassOutline,
   compassSharp,
   heartOutline,
@@ -27,11 +30,14 @@ import {
   mailSharp,
   paperPlaneOutline,
   paperPlaneSharp,
+  manOutline,
+  manSharp,
   trashOutline,
   trashSharp,
   warningOutline,
   warningSharp,
 } from "ionicons/icons";
+import { useHistory } from "react-router";
 import "./Menu.css";
 import { firebaseAuth } from "../store/firebase";
 
@@ -53,34 +59,22 @@ const appPages: AppPage[] = [
     mdIcon: homeSharp,
   },
   {
+    title: "Profile",
+    url: "/profile",
+    iosIcon: manOutline,
+    mdIcon: manSharp,
+  },
+  {
     title: "Study Island",
-    url: "/pages/study",
+    url: "/study",
     iosIcon: compassOutline,
     mdIcon: compassSharp,
   },
   {
-    title: "Favorites",
-    url: "/page/Favorites",
-    iosIcon: heartOutline,
-    mdIcon: heartSharp,
-  },
-  {
-    title: "Archived",
-    url: "/page/Archived",
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp,
-  },
-  {
-    title: "Trash",
-    url: "/page/Trash",
-    iosIcon: trashOutline,
-    mdIcon: trashSharp,
-  },
-  {
-    title: "Spam",
-    url: "/page/Spam",
-    iosIcon: warningOutline,
-    mdIcon: warningSharp,
+    title: "Schedule",
+    url: "/calendar",
+    iosIcon: calendarOutline,
+    mdIcon: calendarSharp,
   },
 ];
 
@@ -88,18 +82,49 @@ const labels = ["Tutors", "Friends", "Reminders"];
 
 const Menu: React.FC = () => {
   const location = useLocation();
+  const history = useHistory();
+
+  // used to render platform specific alerts
+  const [present] = useIonAlert();
+
+  /**
+   *
+   * @returns
+   */
+  const doLogout = async () => {
+    try {
+      await firebaseAuth.signOut();
+
+      // after logout, go back to login page
+      history.replace("/auth/login");
+    } catch (error: any) {
+      // error check for creating user...
+      if (error) {
+        present({
+          header: "Error Logging Out",
+          message: error?.message,
+          buttons: ["OK"],
+        });
+        return;
+      }
+    }
+  };
 
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>
+            {/* TODO: CODE PROFILE IMAGE REPLACEMENT */}
             <IonImg src={iconImg}>Profile</IonImg>
           </IonListHeader>
           {/* DISPLAY EMAIL  */}
           <IonNote>
-            <IonButton routerLink={"/profile"}>
+            <IonButton routerLink={"/profile"} color="light">
               <h6>{firebaseAuth.currentUser?.email}</h6>
+            </IonButton>
+            <IonButton onClick={() => doLogout()} color="light">
+              SIGN OUT
             </IonButton>
           </IonNote>{" "}
           {/* ELVIS OP OPTION  */}

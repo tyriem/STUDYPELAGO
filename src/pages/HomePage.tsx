@@ -42,29 +42,6 @@ const HomePage: React.FC = () => {
     loadUserProfile();
   }, []);
 
-  /**
-   *
-   * @returns
-   */
-  const doLogout = async () => {
-    try {
-      await firebaseAuth.signOut();
-
-      // after logout, go back to login page
-      history.replace("/auth/login");
-    } catch (error: any) {
-      // error check for creating user...
-      if (error) {
-        present({
-          header: "Error Logging Out",
-          message: error?.message,
-          buttons: ["OK"],
-        });
-        return;
-      }
-    }
-  };
-
   return (
     <IonPage>
       <IonHeader class="ion-no-border">
@@ -77,7 +54,9 @@ const HomePage: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen className="ion-padding">
-        <IonButton routerLink={"/profile"}>Profile</IonButton>
+        <IonButton routerLink={"/profile"} color="light">
+          Profile
+        </IonButton>
 
         <pre>
           Welcome back, {userProfile?.firstName} {userProfile?.lastName}
@@ -87,8 +66,6 @@ const HomePage: React.FC = () => {
         {/* use firebase auth api to get current user, and
          render the json response */}
         <pre>{JSON.stringify(userProfile, null, 2)}</pre>
-
-        <IonButton onClick={() => doLogout()}>SIGN OUT</IonButton>
       </IonContent>
     </IonPage>
   );
