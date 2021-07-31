@@ -11,7 +11,6 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { Camera, CameraResultType } from "@capacitor/camera";
 import { firebaseAuth, firebaseApp, firebaseStorage } from "../store/firebase";
 import "./Page.css";
 // import img
@@ -23,31 +22,6 @@ const ProfilePage: React.FC = () => {
   const [uploading, setUploading] = useState<any>(false);
 
   const [image, setImage] = useState<any>("");
-
-  const takePicture = async () => {
-    //Grab the picture with asynchronous threading
-
-    // TRY-CATCH: AWAIT CALL
-    try {
-      const cameraResult = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: true,
-        resultType: CameraResultType.Uri,
-      });
-
-      // image.webPath will contain a path that can be set as an image src.
-      // You can access the original file using image.path, which can be
-      // passed to the Filesystem API to read the raw data of the image,
-      // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-      setImage(cameraResult.webPath);
-
-      // Can be set to the src of an image now
-      //imageElement.src = imageUrl;
-      console.log(image);
-    } catch (error) {
-      console.log("ERROR: ", error.message);
-    }
-  };
 
   const uploadToFirebase = () => {
     setUploading(true);
@@ -117,12 +91,6 @@ const ProfilePage: React.FC = () => {
           }}
         ></input>
         <p>SELECTED FILE {selectedFile?.name}</p>
-
-        {/* TODO: CODE TAKE PICTURE LINK TO UPLOAD PICTURE FUNC */}
-        {/* ION-BUTTON: Click to Take Picture OR Select Image */}
-        <IonButton onClick={() => takePicture()} size="small">
-          TAKE PICTURE
-        </IonButton>
 
         <IonButton onClick={uploadToFirebase} size="small">
           UPLOAD PICTURE
