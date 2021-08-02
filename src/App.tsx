@@ -3,6 +3,9 @@ import {
   IonLoading,
   IonRouterOutlet,
   IonSplitPane,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
@@ -30,6 +33,12 @@ import Menu from "./components/Menu";
 
 //IMPORT HOME PAGE
 import HomePage from "./pages/HomePage";
+
+import TabT from "./pages/tabs/TimelineTab";
+import TabTC from "./pages/tabs/TutorCenterTab";
+import TabCC from "./pages/tabs/CourseCenterTab";
+import TabSI from "./pages/tabs/StudyIslandTab";
+import TabFT from "./pages/tabs/FindTutorTab";
 
 import LoginPage from "./pages/auth/LoginPage";
 import CreateAccountPage from "./pages/auth/CreateAccountPage";
@@ -95,7 +104,22 @@ const App: React.FC = () => {
               <DetailPage />
             </Route>
             <Route path="/study" exact={true} component={StudyPage}>
-              <DetailPage />
+              <StudyPage />
+            </Route>
+            <Route path="/tabs/timeline" exact={true} component={TabT}>
+              <HomePage />
+            </Route>
+            <Route path="/tabs/tutor-center" exact={true} component={TabTC}>
+              <TabTC />
+            </Route>
+            <Route path="/tabs/course-center" exact={true} component={TabCC}>
+              <TabCC />
+            </Route>
+            <Route path="/tabs/study-island" exact={true} component={TabSI}>
+              <TabSI />
+            </Route>
+            <Route path="/tabs/find-tutor" exact={true} component={TabFT}>
+              <TabCC />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

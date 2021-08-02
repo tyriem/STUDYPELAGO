@@ -72,6 +72,7 @@ const CreateAccountPage: React.FC = () => {
         country,
         island,
         streetAddr,
+        firstRun: 1, // Set to 1 to indicate that the user has completed the setup
         updated_at: firebase.firestore.Timestamp.now(),
       });
 

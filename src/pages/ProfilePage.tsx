@@ -84,8 +84,10 @@ const ProfilePage: React.FC = () => {
         {uploading ? (
           <IonLoading isOpen={uploading} message="Uploading File"></IonLoading>
         ) : null}
+        {/* INPUT: IMAGE UPLOAD */}
         <input
           type="file"
+          accept="image/*"
           onChange={(event: any) => {
             setSelectedFile(event.target.files[0]);
           }}

@@ -76,6 +76,7 @@ const LoginPage: React.FC = () => {
             <IonCardSubtitle>STUDY ISLANDS ONLINE: 700</IonCardSubtitle>
           </IonCardHeader>
           {/* ION-IMG: Render Image */}
+
           <IonImg src={welcomeImg}></IonImg>
 
           <IonCardContent>

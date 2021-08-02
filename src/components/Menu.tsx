@@ -36,6 +36,7 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
+  nutritionSharp,
 } from "ionicons/icons";
 import { useHistory } from "react-router";
 import "./Menu.css";
@@ -72,7 +73,7 @@ const appPages: AppPage[] = [
   },
   {
     title: "Schedule",
-    url: "/calendar",
+    url: "/tutor-center",
     iosIcon: calendarOutline,
     mdIcon: calendarSharp,
   },
@@ -109,60 +110,65 @@ const Menu: React.FC = () => {
       }
     }
   };
+  const isAuth = firebaseAuth.currentUser;
 
   return (
-    <IonMenu contentId="main" type="overlay">
-      <IonContent>
-        <IonList id="inbox-list">
-          <IonListHeader>
-            {/* TODO: CODE PROFILE IMAGE REPLACEMENT */}
-            <IonImg src={iconImg}>Profile</IonImg>
-          </IonListHeader>
-          {/* DISPLAY EMAIL  */}
-          <IonNote>
-            <IonButton routerLink={"/profile"} color="light">
-              <h6>{firebaseAuth.currentUser?.email}</h6>
-            </IonButton>
-            <IonButton onClick={() => doLogout()} color="light">
-              SIGN OUT
-            </IonButton>
-          </IonNote>{" "}
-          {/* ELVIS OP OPTION  */}
-          {appPages.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem
-                  className={
-                    location.pathname === appPage.url ? "selected" : ""
-                  }
-                  routerLink={appPage.url}
-                  routerDirection="none"
-                  lines="none"
-                  detail={false}
-                >
-                  <IonIcon
-                    slot="start"
-                    ios={appPage.iosIcon}
-                    md={appPage.mdIcon}
-                  />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
-        </IonList>
+    // TERNARY OPERATOR -> IF I HAVE USER SHOW | IF NOT NULL
+    // NB: TERNARY OP OF FORMAT (condition ? exprIfTrue : exprIfFalse) TO RENDER MENU OR NOT BASED ON LOGIN STATUS
+    isAuth ? (
+      <IonMenu contentId="main" type="overlay">
+        <IonContent>
+          <IonList id="inbox-list">
+            <IonListHeader>
+              {/* TODO: CODE PROFILE IMAGE REPLACEMENT */}
+              <IonImg src={iconImg}>Profile</IonImg>
+            </IonListHeader>
+            {/* DISPLAY EMAIL  */}
+            <IonNote>
+              <IonButton routerLink={"/profile"} color="light">
+                <h6>{firebaseAuth.currentUser?.email}</h6>
+              </IonButton>
+              <IonButton onClick={() => doLogout()} color="light">
+                SIGN OUT
+              </IonButton>
+            </IonNote>{" "}
+            {/* ELVIS OP OPTION  */}
+            {appPages.map((appPage, index) => {
+              return (
+                <IonMenuToggle key={index} autoHide={false}>
+                  <IonItem
+                    className={
+                      location.pathname === appPage.url ? "selected" : ""
+                    }
+                    routerLink={appPage.url}
+                    routerDirection="none"
+                    lines="none"
+                    detail={false}
+                  >
+                    <IonIcon
+                      slot="start"
+                      ios={appPage.iosIcon}
+                      md={appPage.mdIcon}
+                    />
+                    <IonLabel>{appPage.title}</IonLabel>
+                  </IonItem>
+                </IonMenuToggle>
+              );
+            })}
+          </IonList>
 
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
-        </IonList>
-      </IonContent>
-    </IonMenu>
+          <IonList id="labels-list">
+            <IonListHeader>Labels</IonListHeader>
+            {labels.map((label, index) => (
+              <IonItem lines="none" key={index}>
+                <IonIcon slot="start" icon={bookmarkOutline} />
+                <IonLabel>{label}</IonLabel>
+              </IonItem>
+            ))}
+          </IonList>
+        </IonContent>
+      </IonMenu>
+    ) : null
   );
 };
 
