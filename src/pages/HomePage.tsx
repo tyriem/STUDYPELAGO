@@ -15,6 +15,7 @@ import {
   IonItem,
   IonLabel,
   IonMenuButton,
+  IonModal,
   IonPage,
   IonRouterOutlet,
   IonTabs,
@@ -23,6 +24,7 @@ import {
   IonTitle,
   IonToolbar,
   useIonAlert,
+  useIonModal,
 } from "@ionic/react";
 import {
   home,
@@ -55,6 +57,7 @@ import welcomeImg from "../assets/img/welcome.jpg";
 const HomePage: React.FC = () => {
   const history = useHistory();
   const [userProfile, setUserProfile] = useState<any>(null);
+  const [showModal, setShowModal] = useState(true);
 
   // used to render platform specific alerts
   const [present] = useIonAlert();
@@ -89,7 +92,7 @@ const HomePage: React.FC = () => {
         .update({ firstRun: 0 });
 
       // if no error, then render home page
-      history.replace("/tabs/");
+      history.replace("/tabs/timeline");
     } catch (error: any) {
       // error check for ending first run...
       if (error) {
@@ -122,33 +125,29 @@ const HomePage: React.FC = () => {
           Welcome, {userProfile?.firstName} {userProfile?.lastName}
         </pre>
         <h6>Role: {userProfile?.role}</h6>
+
         {userProfile?.firstRun ? (
-          <IonCard>
-            <IonCardHeader>
-              <IonCardTitle>New User</IonCardTitle>
-              <IonCardSubtitle>
-                Thank you for joining Studypelago, New User:{" "}
-                {userProfile?.firstName} {userProfile?.lastName}
-              </IonCardSubtitle>
-            </IonCardHeader>
+          <IonModal isOpen={showModal}>
+            Thank you for joining Studypelago, New User:{" "}
+            {userProfile?.firstName} {userProfile?.lastName}
             {/* ION-IMG: Render Image */}
             <IonImg src={welcomeImg}></IonImg>
-
-            <IonCardContent>
-              <h4>
-                We at Studypelago would like to thank you for trying our
-                service. <p></p>
-                Would you like to find a tutor immediately or have a quick tour
-                of our app?
-              </h4>
-              <IonButton routerLink={"/product/product"}>
-                FIND A TUTOR
-              </IonButton>
-              <IonButton onClick={() => doEndFirstRun()}>
-                TOUR STUDYPELAGO
-              </IonButton>
-            </IonCardContent>
-          </IonCard>
+            <h4>
+              We at Studypelago would like to thank you for trying our service.{" "}
+              <p></p>
+              Would you like to find a tutor immediately or have a quick tour of
+              our app?
+            </h4>
+            <IonButton routerLink={"/product/product"}>FIND A TUTOR</IonButton>
+            <IonButton
+              onClick={() => {
+                doEndFirstRun();
+                setShowModal(false);
+              }}
+            >
+              TOUR STUDYPELAGO
+            </IonButton>
+          </IonModal>
         ) : null}
 
         {/* use firebase auth api to get current user, and

@@ -6,13 +6,13 @@ const CourseCenterTab: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Course Center</IonTitle>
+          <IonTitle>COURSE CENTER</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Course Center</IonTitle>
+            <IonTitle size="large">COURSE CENTER</IonTitle>
           </IonToolbar>
         </IonHeader>
       </IonContent>

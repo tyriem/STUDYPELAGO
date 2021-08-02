@@ -1,0 +1,75 @@
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  useIonAlert,
+} from "@ionic/react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+import { supabase } from "../../store/supabase";
+
+const ProductDetailPage: React.FC = () => {
+
+  // get the product from the URL params
+  const params = useParams<any>();
+
+  // used to render platform specific alerts
+  const [present] = useIonAlert();
+
+  // state variable which will hold product
+  const [product, setProduct] = useState<any>();
+
+  // used to query database for product using productID from 
+  // URL params
+  const loadProductData = async () => {
+    let { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("id", params.productId);
+
+    // error check for creating user...
+    if (error) {
+      present({
+        header: "Error Loading Product",
+        message: error?.message,
+        buttons: ["OK"],
+      });
+      return;
+    }
+
+    // check if not null get first index element which is the 
+    // product information 
+    setProduct(data !== null ? data[0] : null);
+  };
+
+  // this called when component is first mounted/loaded, it will be called
+  // again if the params.productId changes
+  useEffect(() => {
+    loadProductData();
+  }, [params.productId]);
+
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton />
+          </IonButtons>
+          <IonTitle>{product?.name}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonContent fullscreen>
+        <pre>{JSON.stringify(product, null, 2)}</pre>
+      </IonContent>
+    </IonPage>
+  );
+};
+
+export default ProductDetailPage;

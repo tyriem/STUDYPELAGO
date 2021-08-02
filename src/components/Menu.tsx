@@ -66,8 +66,8 @@ const appPages: AppPage[] = [
     mdIcon: manSharp,
   },
   {
-    title: "Study Island",
-    url: "/study",
+    title: "Timeline",
+    url: "/timeline",
     iosIcon: compassOutline,
     mdIcon: compassSharp,
   },
