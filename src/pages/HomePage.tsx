@@ -1,18 +1,11 @@
+// IMPORT: ION LIBs
 import {
-  IonBadge,
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonContent,
   IonHeader,
   IonIcon,
   IonImg,
-  IonInput,
-  IonItem,
   IonLabel,
   IonMenuButton,
   IonModal,
@@ -24,34 +17,27 @@ import {
   IonTitle,
   IonToolbar,
   useIonAlert,
-  useIonModal,
 } from "@ionic/react";
-import {
-  home,
-  ellipse,
-  square,
-  triangle,
-  calendar,
-  compass,
-  personCircle,
-  pencil,
-  search,
-  map,
-  informationCircle,
-} from "ionicons/icons";
+// IMPORT: ICONS
+import { home, calendar, compass, pencil, search } from "ionicons/icons";
+// IMPORT: REACT-ROUTER LIBs
 import { Route, Redirect, useHistory } from "react-router";
 import "./Page.css";
 
+//IMPORT: TAB COMPONENTS
 import TabT from "./tabs/TimelineTab";
 import TabTC from "./tabs/TutorCenterTab";
 import TabCC from "./tabs/CourseCenterTab";
 import TabSI from "./tabs/StudyIslandTab";
 import TabFT from "./tabs/FindTutorTab";
 
+//IMPORT: FIREBASE LIBs
 import { firebaseAuth, firebaseApp } from "../store/firebase";
+
+// IMPORT: USE LIBs
 import { useEffect, useState } from "react";
 
-// import img
+//IMPORT: IMAGE
 import welcomeImg from "../assets/img/welcome.jpg";
 
 const HomePage: React.FC = () => {
@@ -59,10 +45,10 @@ const HomePage: React.FC = () => {
   const [userProfile, setUserProfile] = useState<any>(null);
   const [showModal, setShowModal] = useState(true);
 
-  // used to render platform specific alerts
+  // RENDER ANDR OR IOS ALERTS
   const [present] = useIonAlert();
 
-  // get user profile information
+  // GET DOCUMENT "USERS"
   useEffect(() => {
     const loadUserProfile = async () => {
       const userId = firebaseAuth.currentUser?.uid;
@@ -73,7 +59,7 @@ const HomePage: React.FC = () => {
         .doc(userId)
         .get();
 
-      // get the user data
+      // SET THE USER DATA FROM DOCUMENT
       setUserProfile(dataResponse.data());
       console.log("Data Response: ", dataResponse.data);
     };
@@ -91,10 +77,10 @@ const HomePage: React.FC = () => {
         .doc(firebaseAuth.currentUser?.uid)
         .update({ firstRun: 0 });
 
-      // if no error, then render home page
+      // NO ERROR: RENDER TIMELINE/HOME
       history.replace("/tabs/timeline");
     } catch (error: any) {
-      // error check for ending first run...
+      // ERROR CHECK: Ending first run...
       if (error) {
         present({
           header: "Error Ending First Run",
@@ -125,10 +111,10 @@ const HomePage: React.FC = () => {
           Welcome, {userProfile?.firstName} {userProfile?.lastName}
         </pre>
         <h6>Role: {userProfile?.role}</h6>
-
-        {userProfile?.firstRun ? (
+        {/* MODAL: FIRST RUN PROTOCOL */}
+        {userProfile?.firstRun && userProfile?.role != "Tutor" ? (
           <IonModal isOpen={showModal}>
-            Thank you for joining Studypelago, New User:{" "}
+            Thank you for joining Studypelago,
             {userProfile?.firstName} {userProfile?.lastName}
             {/* ION-IMG: Render Image */}
             <IonImg src={welcomeImg}></IonImg>
@@ -138,7 +124,7 @@ const HomePage: React.FC = () => {
               Would you like to find a tutor immediately or have a quick tour of
               our app?
             </h4>
-            <IonButton routerLink={"/product/product"}>FIND A TUTOR</IonButton>
+            <IonButton routerLink={"/commerce/product"}>FIND A TUTOR</IonButton>
             <IonButton
               onClick={() => {
                 doEndFirstRun();
@@ -160,8 +146,8 @@ const HomePage: React.FC = () => {
             <IonRouterOutlet>
               <Redirect exact path="/tabs" to="/tabs/timeline" />
               {/*
-          Using the render method prop cuts down the number of renders your components will have due to route changes.
-          Use the component prop when your component depends on the RouterComponentProps passed in automatically.
+          NB: Render - Cuts down on # of renders
+              Component Prop - component depends on the RouterComponentProps passed in automatically.
         */}
               <Route
                 path="/tabs/TimelineTab"
@@ -200,10 +186,6 @@ const HomePage: React.FC = () => {
           <IonTabs>
             <IonRouterOutlet>
               <Redirect exact path="/tabs" to="/tabs/timeline" />
-              {/*
-      Using the render method prop cuts down the number of renders your components will have due to route changes.
-      Use the component prop when your component depends on the RouterComponentProps passed in automatically.
-    */}
               <Route
                 path="/tabs/TimelineTab"
                 render={() => <TabT />}

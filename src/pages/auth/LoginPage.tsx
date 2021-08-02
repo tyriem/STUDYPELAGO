@@ -1,6 +1,9 @@
 import {
   IonButton,
   IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
   IonHeader,
   IonImg,
   IonInput,
@@ -75,10 +78,14 @@ const LoginPage: React.FC = () => {
             <IonCardTitle>STUDYPELAGO</IonCardTitle>
             <IonCardSubtitle>STUDY ISLANDS ONLINE: 700</IonCardSubtitle>
           </IonCardHeader>
-          {/* ION-IMG: Render Image */}
-
-          <IonImg src={welcomeImg}></IonImg>
-
+          <IonGrid>
+            <IonRow>
+              <IonCol size="10" size-lg offset="1">
+                {/* ION-IMG: Render Image */}
+                <IonImg src={welcomeImg}></IonImg>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
           <IonCardContent>
             Welcome to Studypelago, the Caribbean's premier tutor services app!
             <IonItem>
