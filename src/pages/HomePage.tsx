@@ -32,7 +32,10 @@ import TabSI from "./tabs/StudyIslandTab";
 import TabFT from "./tabs/FindTutorTab";
 
 //IMPORT: FIREBASE LIBs
-import { firebaseAuth, firebaseApp } from "../store/firebase";
+
+import { firebaseAuth, firebaseApp } from "../data/data-services";
+import { getTutorData } from "../data/data-services";
+import { getCourseData } from "../data/data-services";
 
 // IMPORT: USE LIBs
 import { useEffect, useState } from "react";

@@ -21,7 +21,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 
 // import firebase client
-import { firebaseAuth, firebaseApp } from "../../store/firebase";
+import { firebaseAuth, firebaseApp } from "../../data/data-services";
 
 // START OF COMPONENT
 const CreateAccountPage: React.FC = () => {
@@ -220,9 +220,11 @@ const CreateAccountPage: React.FC = () => {
           <IonSelect
             onIonChange={(event: any) => setCountry(event.target.value)}
           >
+            <IonSelectOption value="AR">ARUBA</IonSelectOption>
             <IonSelectOption value="BHS">Bahamas, The</IonSelectOption>
-            <IonSelectOption value="US">Jamaica</IonSelectOption>
-            <IonSelectOption value="US">United States</IonSelectOption>
+            <IonSelectOption value="BB">Barbados</IonSelectOption>
+            <IonSelectOption value="JA">Jamaica</IonSelectOption>
+            <IonSelectOption value="OUTSIDE">United States</IonSelectOption>
           </IonSelect>
         </IonItem>
 
@@ -240,7 +242,7 @@ const CreateAccountPage: React.FC = () => {
             <IonSelectOption value="EL">ELEUTHERA</IonSelectOption>
             <IonSelectOption value="LI">LONG ISLAND</IonSelectOption>
             <IonSelectOption value="NP">NEW PROVIDENCE</IonSelectOption>
-            <IonSelectOption value="SS">NEW PROVIDENCE</IonSelectOption>
+            <IonSelectOption value="SS">SAN SALVADOR</IonSelectOption>
           </IonSelect>
         </IonItem>
 

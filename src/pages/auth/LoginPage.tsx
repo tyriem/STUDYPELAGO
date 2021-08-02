@@ -25,7 +25,7 @@ import { useHistory } from "react-router";
 import "../Page.css";
 
 // import firebase declared in firebase.js
-import { firebaseAuth } from "../../store/firebase";
+import { firebaseAuth } from "../../data/data-services";
 
 // import img
 import welcomeImg from "../../assets/img/welcome.jpg";

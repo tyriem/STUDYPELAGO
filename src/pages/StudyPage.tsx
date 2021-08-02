@@ -9,7 +9,7 @@ import {
 } from "@ionic/react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import { firebaseAuth, firebaseApp } from "../store/firebase";
+import { firebaseAuth, firebaseApp } from "../data/data-services";
 import "./Page.css";
 
 const StudyPage: React.FC = () => {

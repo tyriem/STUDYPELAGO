@@ -28,6 +28,11 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+
+// IMPORT FIREBASE
+import { initializeFirebase } from "./data/data-services";
+import { firebaseAuth } from "./data/data-services";
+
 //IMPORT SIDE MENU
 import Menu from "./components/Menu";
 
@@ -43,7 +48,7 @@ import TabFT from "./pages/tabs/FindTutorTab";
 import LoginPage from "./pages/auth/LoginPage";
 import CreateAccountPage from "./pages/auth/CreateAccountPage";
 import { useEffect, useState } from "react";
-import { firebaseAuth } from "./store/firebase";
+
 import DetailPage from "./pages/ProfilePage";
 import StudyPage from "./pages/StudyPage";
 
@@ -69,6 +74,8 @@ const App: React.FC = () => {
 
     console.log("SESSION: ", session);
   }, []);
+
+  initializeFirebase();
 
   // if we have't checked for session yet, then display loading screen
   if (loading)
@@ -119,7 +126,7 @@ const App: React.FC = () => {
               <TabSI />
             </Route>
             <Route path="/tabs/find-tutor" exact={true} component={TabFT}>
-              <TabCC />
+              <TabFT />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

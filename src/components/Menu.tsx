@@ -40,7 +40,7 @@ import {
 } from "ionicons/icons";
 import { useHistory } from "react-router";
 import "./Menu.css";
-import { firebaseAuth } from "../store/firebase";
+import { firebaseAuth } from "../data/data-services";
 
 // import img
 import iconImg from "../assets/img/user-icon.png";
