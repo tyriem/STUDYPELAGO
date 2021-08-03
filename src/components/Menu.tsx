@@ -20,6 +20,8 @@ import {
   bookmarkOutline,
   calendarOutline,
   calendarSharp,
+  timeOutline,
+  timeSharp,
   compassOutline,
   compassSharp,
   heartOutline,
@@ -40,7 +42,7 @@ import {
 } from "ionicons/icons";
 import { useHistory } from "react-router";
 import "./Menu.css";
-import { firebaseAuth } from "../data/data-services";
+import { firebaseAuth } from "../store/firebase";
 
 // import img
 import iconImg from "../assets/img/user-icon.png";
@@ -68,14 +70,14 @@ const appPages: AppPage[] = [
   {
     title: "Timeline",
     url: "/timeline",
-    iosIcon: compassOutline,
-    mdIcon: compassSharp,
+    iosIcon: timeOutline,
+    mdIcon: timeSharp,
   },
   {
-    title: "Schedule",
-    url: "/tutor-center",
-    iosIcon: calendarOutline,
-    mdIcon: calendarSharp,
+    title: "Study Island",
+    url: "/tabs/study-island",
+    iosIcon: compassOutline,
+    mdIcon: compassSharp,
   },
 ];
 

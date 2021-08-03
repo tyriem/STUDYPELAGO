@@ -44,7 +44,7 @@ import {
 import { Route, Redirect, useHistory } from "react-router";
 import "./Page.css";
 
-import { firebaseAuth, firebaseApp } from "../../data/data-services";
+import { firebaseAuth, firebaseApp } from "../../store/firebase";
 import { useEffect, useState } from "react";
 
 const ProductPage: React.FC = () => {

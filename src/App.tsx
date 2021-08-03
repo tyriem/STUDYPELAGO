@@ -50,7 +50,6 @@ import CreateAccountPage from "./pages/auth/CreateAccountPage";
 import { useEffect, useState } from "react";
 
 import DetailPage from "./pages/ProfilePage";
-import StudyPage from "./pages/StudyPage";
 import PaymentPage from "./pages/commerce/PaymentPage";
 
 const App: React.FC = () => {
@@ -110,9 +109,6 @@ const App: React.FC = () => {
             </Route>
             <Route path="/profile" exact={true}>
               <DetailPage />
-            </Route>
-            <Route path="/study" exact={true} component={StudyPage}>
-              <StudyPage />
             </Route>
             <Route path="/tabs/timeline" exact={true} component={TabT}>
               <HomePage />

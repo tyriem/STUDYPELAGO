@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
@@ -21,7 +21,8 @@ serviceWorkerRegistration.unregister();
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
+//PAYPAL JS INTEGRATION
 <script
-      src="https://www.paypal.com/sdk/js?client-id=<YOUR_CLIENT-ID>&enable-funding=venmo&currency=USD"
-      data-sdk-integration-source="button-factory">
-</script>
+  src="https://www.paypal.com/sdk/js?client-id=AcPwkrZPMm9kV0b8NYqn7j4yKMfYuNSGdD_1nAqgSRFoqQDwkq6KPuDoLFgchVqXSJVJZK5OIGm9hbac&enable-funding=venmo&currency=BSD"
+  data-sdk-integration-source="button-factory"
+></script>;

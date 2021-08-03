@@ -11,11 +11,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
-import {
-  firebaseAuth,
-  firebaseApp,
-  firebaseStorage,
-} from "../data/data-services";
+import { firebaseAuth, firebaseApp, firebaseStorage } from "../store/firebase";
 import "./Page.css";
 // import img
 import iconImg from "../assets/img/user-icon.png";

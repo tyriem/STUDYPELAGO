@@ -9,6 +9,7 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 
+//DECLARE: Global variable paypal
 declare var paypal: any;
 
 function PaymentPage() {
@@ -44,7 +45,7 @@ function PaymentPage() {
           onApprove: (data: any, actions: any) => {
             return actions.order.capture().then((details: any) => {
               alert(
-                "Transaction completed by " +
+                "Transaction completed by: " +
                   details.payer.name.given_name +
                   "!"
               );
