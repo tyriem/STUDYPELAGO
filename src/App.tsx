@@ -33,24 +33,24 @@ import "./theme/variables.css";
 import { initializeFirebase } from "./data/data-services";
 import { firebaseAuth } from "./data/data-services";
 
-//IMPORT SIDE MENU
-import Menu from "./components/Menu";
-
-//IMPORT HOME PAGE
-import HomePage from "./pages/HomePage";
-
 import TabT from "./pages/tabs/TimelineTab";
 import TabTC from "./pages/tabs/TutorCenterTab";
 import TabCC from "./pages/tabs/CourseCenterTab";
 import TabSI from "./pages/tabs/StudyIslandTab";
 import TabFT from "./pages/tabs/FindTutorTab";
 
+//IMPORT SIDE MENU
+import Menu from "./components/Menu";
+
+//IMPORT HOME PAGE
+import HomePage from "./pages/HomePage";
+
+import DetailPage from "./pages/ProfilePage";
+import SchedulePage from "./pages/SchedulePage";
+import PaymentPage from "./pages/commerce/PaymentPage";
 import LoginPage from "./pages/auth/LoginPage";
 import CreateAccountPage from "./pages/auth/CreateAccountPage";
 import { useEffect, useState } from "react";
-
-import DetailPage from "./pages/ProfilePage";
-import PaymentPage from "./pages/commerce/PaymentPage";
 
 const App: React.FC = () => {
   const [session, setSession] = useState<any>(null);
@@ -109,6 +109,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/profile" exact={true}>
               <DetailPage />
+            </Route>
+            <Route path="/schedule" exact={true}>
+              <SchedulePage />
             </Route>
             <Route path="/tabs/timeline" exact={true} component={TabT}>
               <HomePage />

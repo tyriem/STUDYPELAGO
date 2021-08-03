@@ -79,6 +79,12 @@ const appPages: AppPage[] = [
     iosIcon: compassOutline,
     mdIcon: compassSharp,
   },
+  {
+    title: "Schedule",
+    url: "/schedule",
+    iosIcon: calendarOutline,
+    mdIcon: calendarSharp,
+  },
 ];
 
 const labels = ["Tutors", "Friends", "Reminders"];

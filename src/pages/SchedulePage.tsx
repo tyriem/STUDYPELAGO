@@ -10,9 +10,11 @@ import {
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { firebaseAuth, firebaseApp } from "../data/data-services";
+import { InlineWidget } from "react-calendly";
+
 import "./Page.css";
 
-const StudyPage: React.FC = () => {
+const SchedulePage: React.FC = () => {
   const { firstName } = useParams<{ firstName: string }>();
 
   // get user profile information
@@ -30,20 +32,22 @@ const StudyPage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>STUDY ISLAND</IonTitle>
+          <IonTitle>SCHEDULE</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">STUDY ISLAND</IonTitle>
+            <IonTitle size="large">SCHEDULE</IonTitle>
           </IonToolbar>
         </IonHeader>
-        WELCOME TO YOUR STUDY ISLAND, {firstName}
+        <div>
+          <InlineWidget url="https://calendly.com/studypelago/60min" />
+        </div>
       </IonContent>
     </IonPage>
   );
 };
 
-export default StudyPage;
+export default SchedulePage;

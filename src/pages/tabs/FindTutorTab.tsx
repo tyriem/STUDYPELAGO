@@ -14,6 +14,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { useParams } from "react-router";
+import { PopupWidget } from "react-calendly";
 
 function FindTutorTab() {
   const [message, setMessage] = useState<any>();
@@ -55,6 +56,12 @@ function FindTutorTab() {
         ) : (
           <div>NO TUTORS FOUND</div>
         )}
+        <PopupWidget
+          color="#42C4D1"
+          text="Request a Session with Tutor: Tyrie Moss"
+          textColor="#ffffff"
+          url="https://calendly.com/studypelago"
+        />
       </IonContent>
     </IonPage>
   );

@@ -26,3 +26,10 @@ reportWebVitals();
   src="https://www.paypal.com/sdk/js?client-id=AcPwkrZPMm9kV0b8NYqn7j4yKMfYuNSGdD_1nAqgSRFoqQDwkq6KPuDoLFgchVqXSJVJZK5OIGm9hbac&enable-funding=venmo&currency=BSD"
   data-sdk-integration-source="button-factory"
 ></script>;
+
+//CALENDLY JS INTEGRATION
+<script
+  type="text/javascript"
+  src="https://assets.calendly.com/assets/external/widget.js"
+  async
+></script>;
