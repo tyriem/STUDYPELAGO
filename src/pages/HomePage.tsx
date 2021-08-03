@@ -17,9 +17,19 @@ import {
   IonTitle,
   IonToolbar,
   useIonAlert,
+  IonFab,
+  IonFabButton,
 } from "@ionic/react";
 // IMPORT: ICONS
-import { home, calendar, compass, pencil, search } from "ionicons/icons";
+import {
+  home,
+  calendar,
+  compass,
+  pencil,
+  search,
+  add,
+  cash,
+} from "ionicons/icons";
 // IMPORT: REACT-ROUTER LIBs
 import { Route, Redirect, useHistory } from "react-router";
 import "./Page.css";
@@ -42,6 +52,9 @@ import { useEffect, useState } from "react";
 
 //IMPORT: IMAGE
 import welcomeImg from "../assets/img/welcome.jpg";
+
+//IMPORT PAYMENT PAGE
+import PaymentPage from "./commerce/PaymentPage";
 
 const HomePage: React.FC = () => {
   const history = useHistory();
@@ -107,6 +120,14 @@ const HomePage: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen className="ion-padding">
+        {/*-- PAYMENT FAB --*/}
+        <IonFab vertical="top" horizontal="end" slot="fixed">
+          <IonFabButton href="/commerce/payment">
+            {/* {history.replace("/commerce/payment")} */}
+            <IonIcon icon={cash} />
+          </IonFabButton>
+        </IonFab>
+
         <IonButton routerLink={"/profile"} color="light">
           Profile
         </IonButton>

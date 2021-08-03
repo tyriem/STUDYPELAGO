@@ -41,7 +41,7 @@ function FindTutorTab() {
         {message ? (
           <IonItem>
             <IonLabel className="ion-text-wrap">
-              {/* use firebase auth api to get current user, and
+              {/* use firebase call to get list of tutors, and
          render the json response */}
               <pre>{JSON.stringify(message, null, 2)}</pre>
               <h2>{message.name}</h2>

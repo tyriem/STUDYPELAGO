@@ -51,6 +51,7 @@ import { useEffect, useState } from "react";
 
 import DetailPage from "./pages/ProfilePage";
 import StudyPage from "./pages/StudyPage";
+import PaymentPage from "./pages/commerce/PaymentPage";
 
 const App: React.FC = () => {
   const [session, setSession] = useState<any>(null);
@@ -127,6 +128,13 @@ const App: React.FC = () => {
             </Route>
             <Route path="/tabs/find-tutor" exact={true} component={TabFT}>
               <TabFT />
+            </Route>
+            <Route
+              path="/commerce/payment"
+              exact={true}
+              component={PaymentPage}
+            >
+              <PaymentPage />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

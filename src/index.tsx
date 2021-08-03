@@ -20,3 +20,8 @@ serviceWorkerRegistration.unregister();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+<script
+      src="https://www.paypal.com/sdk/js?client-id=<YOUR_CLIENT-ID>&enable-funding=venmo&currency=USD"
+      data-sdk-integration-source="button-factory">
+</script>
