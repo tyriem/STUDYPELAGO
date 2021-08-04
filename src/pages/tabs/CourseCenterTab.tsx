@@ -118,11 +118,17 @@ const CourseCenterTab: React.FC = () => {
             onIonChange={(event: any) => setDescription(event.target.value)}
           />
         </IonItem>
+        <iframe
+          src="https://h5p.org/h5p/embed/1202919"
+          width="1090"
+          height="535"
+          allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"
+          title="BGCSE MULTIPLE CHOICE QUIZ"
+        ></iframe>
+        <script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js"></script>
       </IonContent>
       <IonFooter>
-        <IonButton onClick={() => doAddStuff()}>
-          UPLOAD COURSE LISTING
-        </IonButton>
+        <IonButton onClick={() => doAddStuff()}>UPLOAD ASSIGNMENT</IonButton>
         <IonButton color="danger" onClick={() => history.goBack()}>
           CANCEL
         </IonButton>

@@ -33,9 +33,26 @@ const StudyIslandTab: React.FC = () => {
             <IonTitle size="large">STUDY ISLAND</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <VideoCallFrame
-          url={process.env.REACT_APP_DAILY_ROOM_URL}
-        ></VideoCallFrame>
+        <p></p>
+        <IonButton routerLink={"/study-session"} size="large">
+          BGCSE MATH WITH TUTOR: TYRIE MOSS
+        </IonButton>
+        <p></p>
+        <p></p>
+        <IonButton routerLink={"/study-session"} size="large" disabled={true}>
+          BGCSE ENGLISH WITH TUTOR: GAIL WOON
+        </IonButton>
+        <p></p>
+        <p></p>
+        <IonButton routerLink={"/study-session"} size="large" disabled={true}>
+          BGCSE PHYSICS WITH TUTOR: JOHN DOE
+        </IonButton>
+        <p></p>
+        <p></p>
+        <IonButton routerLink={"/study-session"} size="large" disabled={true}>
+          BGCSE CHEMISTRY WITH TUTOR: JANE DOE
+        </IonButton>
+        <p></p>
       </IonContent>
     </IonPage>
   );

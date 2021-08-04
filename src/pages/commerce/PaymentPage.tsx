@@ -67,7 +67,7 @@ function PaymentPage() {
     <IonPage id="view-message-page">
       <IonHeader translucent>
         <IonToolbar>
-          <IonTitle>ADD CREDIT TO ACCOUNT</IonTitle>
+          <IonTitle>ADD CREDIT</IonTitle>
           <IonButtons slot="start">
             <IonBackButton defaultHref="/home"></IonBackButton>
           </IonButtons>

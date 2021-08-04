@@ -68,12 +68,6 @@ const appPages: AppPage[] = [
     mdIcon: manSharp,
   },
   {
-    title: "Timeline",
-    url: "/timeline",
-    iosIcon: timeOutline,
-    mdIcon: timeSharp,
-  },
-  {
     title: "Study Island",
     url: "/tabs/study-island",
     iosIcon: compassOutline,
@@ -87,7 +81,7 @@ const appPages: AppPage[] = [
   },
 ];
 
-const labels = ["Tutors", "Friends", "Reminders"];
+const labels = ["Tutors", "Assignments", "Reminders"];
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -164,15 +158,46 @@ const Menu: React.FC = () => {
               );
             })}
           </IonList>
-
+          {/* MAP TO PRINT ALL LABELS
           <IonList id="labels-list">
-            <IonListHeader>Labels</IonListHeader>
+            <IonListHeader>BOOKMARKS</IonListHeader>
+            
             {labels.map((label, index) => (
               <IonItem lines="none" key={index}>
                 <IonIcon slot="start" icon={bookmarkOutline} />
                 <IonLabel>{label}</IonLabel>
+                MAP TO PRINT ALL LABELS
               </IonItem>
             ))}
+          </IonList> */}
+          <IonList id="labels-list">
+            <IonListHeader>BOOKMARKS</IonListHeader>
+            <IonItem>
+              <IonIcon slot="start" icon={bookmarkOutline} />
+              <IonLabel> Study Islands </IonLabel>
+            </IonItem>
+            <p></p>
+            <IonButton routerLink={"/study-island"} size="small">
+              BGCSE MATH WITH TUTOR: TYRIE MOSS
+            </IonButton>
+            <p></p>
+
+            <IonItem>
+              <IonIcon slot="start" icon={bookmarkOutline} />
+              <IonLabel> Assignments </IonLabel>
+            </IonItem>
+            <p></p>
+            <IonButton routerLink={"/assignment"} size="small">
+              BGCSE MATH - Section 1 - MULTIPLE CHOICE
+            </IonButton>
+            <p></p>
+            <IonItem>
+              <IonIcon slot="start" icon={bookmarkOutline} />
+              <IonLabel> Reminders </IonLabel>
+            </IonItem>
+            <h6>
+              Assignment: BGCSE MATH - Section 1 - MULTIPLE CHOICE is due Monday
+            </h6>
           </IonList>
         </IonContent>
       </IonMenu>
