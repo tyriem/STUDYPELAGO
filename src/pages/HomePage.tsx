@@ -128,9 +128,6 @@ const HomePage: React.FC = () => {
           </IonFabButton>
         </IonFab>
 
-        <IonButton routerLink={"/profile"} color="light">
-          Profile
-        </IonButton>
         <pre>
           Welcome, {userProfile?.firstName} {userProfile?.lastName}
         </pre>

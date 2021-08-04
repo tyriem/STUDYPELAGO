@@ -9,6 +9,7 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 
+//TODO: #1 IMPLEMENT PAYPAL INTEGRATION | ISSUE: GLOBAL VAR RECOGNIZING
 //DECLARE: Global variable paypal
 declare var paypal: any;
 
@@ -19,7 +20,7 @@ function PaymentPage() {
   const lineItems = [
     {
       description: " Credit: One(1) Hour Session ",
-      amount: { currency_code: "BSD", value: 20 },
+      amount: { currency_code: "USD", value: 20 },
     },
   ];
 
@@ -74,7 +75,7 @@ function PaymentPage() {
       </IonHeader>
 
       <IonContent fullscreen className="ion-padding">
-        <h1>PAYMENTS</h1>
+        <h1>PURCHASE SESSION CREDIT</h1>
         <div id="paypal-button-container"></div>
       </IonContent>
     </IonPage>

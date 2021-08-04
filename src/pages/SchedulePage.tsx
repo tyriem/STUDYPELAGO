@@ -42,6 +42,7 @@ const SchedulePage: React.FC = () => {
             <IonTitle size="large">SCHEDULE</IonTitle>
           </IonToolbar>
         </IonHeader>
+        {/* TODO: #2 PROGRAMMATIC CALENDAR LOGIC HERE: https://github.com/Kiarash-Z/react-modern-calendar-datepicker */}
         <div>
           <InlineWidget url="https://calendly.com/studypelago/60min" />
         </div>
