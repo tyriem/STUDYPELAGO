@@ -19,6 +19,20 @@ import {
   useIonAlert,
   IonFab,
   IonFabButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCol,
+  IonGrid,
+  IonInput,
+  IonItem,
+  IonRow,
+  IonThumbnail,
+  IonFooter,
+  IonAvatar,
+  IonChip,
 } from "@ionic/react";
 // IMPORT: ICONS
 import {
@@ -29,6 +43,8 @@ import {
   search,
   add,
   cash,
+  closeCircle,
+  cube,
 } from "ionicons/icons";
 // IMPORT: REACT-ROUTER LIBs
 import { Route, Redirect, useHistory } from "react-router";
@@ -50,10 +66,13 @@ import { getCourseData } from "../data/data-services";
 // IMPORT: USE LIBs
 import { useEffect, useState } from "react";
 
-//IMPORT: IMAGE
+//IMPORT: IMAGE WELCOME
 import welcomeImg from "../assets/img/welcome.jpg";
 
-//IMPORT PAYMENT PAGE
+//IMPORT: IMAGE POST
+import postImg from "../assets/img/post.jpg";
+
+//IMPORT: PAYMENT PAGE
 import PaymentPage from "./commerce/PaymentPage";
 
 const HomePage: React.FC = () => {
@@ -128,10 +147,29 @@ const HomePage: React.FC = () => {
           </IonFabButton>
         </IonFab>
 
-        <pre>
-          Welcome, {userProfile?.firstName} {userProfile?.lastName}
-        </pre>
-        <h6>Role: {userProfile?.role}</h6>
+        <IonGrid>
+          <IonRow>
+            <IonCol size="5" size-lg offset="0.5">
+              <IonChip>
+                <IonAvatar>
+                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                </IonAvatar>
+                <IonLabel>
+                  <pre>
+                    Welcome, {userProfile?.firstName} {userProfile?.lastName}
+                  </pre>
+                </IonLabel>
+              </IonChip>
+              <IonChip>
+                <IonIcon icon={cube} />
+                <IonLabel>
+                  <h6>Role: {userProfile?.role}</h6>
+                </IonLabel>
+              </IonChip>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
         {/* MODAL: FIRST RUN PROTOCOL */}
         {userProfile?.firstRun && userProfile?.role != "Tutor" ? (
           <IonModal isOpen={showModal}>
@@ -156,91 +194,149 @@ const HomePage: React.FC = () => {
             </IonButton>
           </IonModal>
         ) : null}
+        {/* EXAMPLE TIMELINE POST: 1 */}
+        <IonGrid>
+          <IonRow>
+            <IonCol size="12" size-lg offset="0">
+              <IonCard color="secondary">
+                <IonCardHeader>
+                  <IonCardTitle>Studypelago Stats</IonCardTitle>
+                </IonCardHeader>
+
+                <IonCardContent>
+                  <iframe
+                    width="100%"
+                    height="250"
+                    src="//plotly.com/dashboard/Isle:2/embed"
+                  ></iframe>
+                  <h1>
+                    Take a quick look at how our students are performing across
+                    the platform.
+                  </h1>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
+        {/* EXAMPLE TIMELINE POST: 2 */}
+        <IonGrid>
+          <IonRow>
+            <IonCol size="12" size-lg offset="0">
+              <IonCard color="secondary">
+                <IonCardHeader>
+                  <IonThumbnail slot="start">
+                    {/* ION-IMG: Render Image */}
+                    <IonImg src={postImg}></IonImg>
+                  </IonThumbnail>
+                  <IonChip>
+                    <IonAvatar>
+                      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                    </IonAvatar>
+                    <IonLabel>BGCSE Tutor | Gail Woon</IonLabel>
+                  </IonChip>
+                  <IonCardSubtitle></IonCardSubtitle>
+                  <IonCardSubtitle>Timeline Post: </IonCardSubtitle>
+                </IonCardHeader>
+
+                <IonCardContent>
+                  {/* ION-IMG: Render Image */}
+                  <IonImg src={postImg}></IonImg>
+                  Getting ready for my first #Studypelago sesh. Wish me luck!
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
 
         {/* use firebase auth api to get current user, and
          render the json response */}
-        <pre>{JSON.stringify(userProfile, null, 2)}</pre>
-
-        {/* TERNARY OP: ROLE = TUTOR */}
-        {userProfile?.role === "Tutor" ? (
-          <IonTabs>
-            <IonRouterOutlet>
-              <Redirect exact path="/tabs" to="/tabs/timeline" />
-              {/*
+        {/* <pre>{JSON.stringify(userProfile, null, 2)}</pre> */}
+      </IonContent>
+      {/*-- Footer --*/}
+      <IonFooter>
+        <IonToolbar>
+          {/* TERNARY OP: ROLE = TUTOR */}
+          {userProfile?.role === "Tutor" ? (
+            <IonTabs>
+              <IonRouterOutlet>
+                <Redirect exact path="/tabs" to="/tabs/timeline" />
+                {/*
           NB: Render - Cuts down on # of renders
               Component Prop - component depends on the RouterComponentProps passed in automatically.
         */}
-              <Route
-                path="/tabs/TimelineTab"
-                render={() => <TabT />}
-                exact={true}
-              />
-              <Route
-                path="/tabs/TutorCenterTab"
-                render={() => <TabTC />}
-                exact={true}
-              />
-              <Route
-                path="/tabs/CourseCenterTab"
-                render={() => <TabCC />}
-                exact={true}
-              />
-            </IonRouterOutlet>
-            <IonTabBar slot="bottom">
-              <IonTabButton tab="TimelineTab" href="/tabs/timeline">
-                <IonIcon icon={home} />
-                <IonLabel>Timeline</IonLabel>
-              </IonTabButton>
+                <Route
+                  path="/tabs/TimelineTab"
+                  render={() => <TabT />}
+                  exact={true}
+                />
+                <Route
+                  path="/tabs/TutorCenterTab"
+                  render={() => <TabTC />}
+                  exact={true}
+                />
+                <Route
+                  path="/tabs/CourseCenterTab"
+                  render={() => <TabCC />}
+                  exact={true}
+                />
+              </IonRouterOutlet>
+              <IonTabBar slot="bottom">
+                <IonTabButton tab="TimelineTab" href="/tabs/timeline">
+                  <IonIcon icon={home} />
+                  <IonLabel>Home</IonLabel>
+                </IonTabButton>
 
-              <IonTabButton tab="TutorCenterTab" href="/tabs/tutor-center">
-                <IonIcon icon={calendar} />
-                <IonLabel>Tutor Center</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="CourseCenterTab" href="/tabs/course-center">
-                <IonIcon icon={pencil} />
-                <IonLabel>Course Center</IonLabel>
-              </IonTabButton>
-            </IonTabBar>
-          </IonTabs>
-        ) : (
-          /* TERNARY OP: ROLE = STUDENT OR PARENT */
-          <IonTabs>
-            <IonRouterOutlet>
-              <Redirect exact path="/tabs" to="/tabs/timeline" />
-              <Route
-                path="/tabs/TimelineTab"
-                render={() => <TabT />}
-                exact={true}
-              />
-              <Route
-                path="/tabs/StudyIslandTab"
-                render={() => <TabSI />}
-                exact={true}
-              />
-              <Route
-                path="/tabs/FindTutorTab"
-                render={() => <TabFT />}
-                exact={true}
-              />
-            </IonRouterOutlet>
-            <IonTabBar slot="bottom">
-              <IonTabButton tab="TimelineTab" href="/tabs/timeline">
-                <IonIcon icon={home} />
-                <IonLabel>Timeline</IonLabel>
-              </IonTabButton>
+                <IonTabButton tab="TutorCenterTab" href="/tabs/tutor-center">
+                  <IonIcon icon={calendar} />
+                  <IonLabel>Tutor Center</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="CourseCenterTab" href="/tabs/course-center">
+                  <IonIcon icon={pencil} />
+                  <IonLabel>Course Center</IonLabel>
+                </IonTabButton>
+              </IonTabBar>
+            </IonTabs>
+          ) : (
+            /* TERNARY OP: ROLE = STUDENT OR PARENT */
+            <IonTabs>
+              <IonRouterOutlet>
+                <Redirect exact path="/tabs" to="/tabs/timeline" />
+                <Route
+                  path="/tabs/TimelineTab"
+                  render={() => <TabT />}
+                  exact={true}
+                />
+                <Route
+                  path="/tabs/StudyIslandTab"
+                  render={() => <TabSI />}
+                  exact={true}
+                />
+                <Route
+                  path="/tabs/FindTutorTab"
+                  render={() => <TabFT />}
+                  exact={true}
+                />
+              </IonRouterOutlet>
+              <IonTabBar slot="bottom">
+                <IonTabButton tab="TimelineTab" href="/tabs/timeline">
+                  <IonIcon icon={home} />
+                  <IonLabel>Timeline</IonLabel>
+                </IonTabButton>
 
-              <IonTabButton tab="StudyIslandTab" href="/tabs/study-island">
-                <IonIcon icon={compass} />
-                <IonLabel>Study Island</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="FindTutorTab" href="/tabs/find-tutor">
-                <IonIcon icon={search} />
-                <IonLabel>Find A Tutor</IonLabel>
-              </IonTabButton>
-            </IonTabBar>
-          </IonTabs>
-        )}
-      </IonContent>
+                <IonTabButton tab="StudyIslandTab" href="/tabs/study-island">
+                  <IonIcon icon={compass} />
+                  <IonLabel>Study Island</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="FindTutorTab" href="/tabs/find-tutor">
+                  <IonIcon icon={search} />
+                  <IonLabel>Find A Tutor</IonLabel>
+                </IonTabButton>
+              </IonTabBar>
+            </IonTabs>
+          )}
+        </IonToolbar>
+      </IonFooter>
     </IonPage>
   );
 };

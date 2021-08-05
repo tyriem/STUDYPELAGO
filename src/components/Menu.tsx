@@ -177,7 +177,7 @@ const Menu: React.FC = () => {
               <IonLabel> Study Islands </IonLabel>
             </IonItem>
             <p></p>
-            <IonButton routerLink={"/study-island"} size="small">
+            <IonButton routerLink={"/study-session"} size="small">
               BGCSE MATH WITH TUTOR: TYRIE MOSS
             </IonButton>
             <p></p>

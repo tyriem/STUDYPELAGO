@@ -1,3 +1,19 @@
+:root {
+  --ion-color-primary: #42c4d1;
+  --ion-color-primary-rgb: 66, 196, 209;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #42c4d1;
+  --ion-color-primary-tint: #42c4d1;
+
+  --ion-color-secondary: #fffff0;
+  --ion-color-secondary-rgb: 66, 196, 209;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #fffff0;
+  --ion-color-secondary-tint: #fffff0;
+}
+
 ion-header,
 ion-toolbar {
   --background: #42c4d1;
@@ -85,4 +101,8 @@ ion-segment-button {
 
 #container a {
   text-decoration: none;
+}
+
+iframe {
+  border: 0;
 }
