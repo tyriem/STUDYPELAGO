@@ -15,37 +15,21 @@ import {
 
 import { useLocation } from "react-router-dom";
 import {
-  archiveOutline,
-  archiveSharp,
   bookmarkOutline,
   calendarOutline,
   calendarSharp,
-  timeOutline,
-  timeSharp,
-  compassOutline,
-  compassSharp,
-  heartOutline,
-  heartSharp,
   homeOutline,
   homeSharp,
-  mailOutline,
-  mailSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
   manOutline,
   manSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
-  nutritionSharp,
 } from "ionicons/icons";
 import { useHistory } from "react-router";
 import "./Menu.css";
-import { firebaseAuth } from "../store/firebase";
+import { firebaseApp, firebaseAuth } from "../store/firebase";
 
 // import img
 import iconImg from "../assets/img/user-icon.png";
+import { useEffect, useState } from "react";
 
 interface AppPage {
   url: string;
@@ -68,12 +52,6 @@ const appPages: AppPage[] = [
     mdIcon: manSharp,
   },
   {
-    title: "Study Island",
-    url: "/tabs/study-island",
-    iosIcon: compassOutline,
-    mdIcon: compassSharp,
-  },
-  {
     title: "Schedule",
     url: "/schedule",
     iosIcon: calendarOutline,
@@ -86,6 +64,27 @@ const labels = ["Tutors", "Assignments", "Reminders"];
 const Menu: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
+  const [userProfile, setUserProfile] = useState<any>(null);
+
+  // GET DOCUMENT "USERS"
+  useEffect(() => {
+    const loadUserProfile = async () => {
+      const userId = firebaseAuth.currentUser?.uid;
+      console.log("User ID: ", userId);
+      const dataResponse = await firebaseApp
+        .firestore()
+        .collection("users")
+        .doc(userId)
+        .get();
+
+      // SET THE USER DATA FROM DOCUMENT
+      setUserProfile(dataResponse.data());
+      console.log("Data Response: ", dataResponse.data);
+    };
+
+    console.log("get user profile information...");
+    loadUserProfile();
+  }, []);
 
   // used to render platform specific alerts
   const [present] = useIonAlert();
@@ -170,35 +169,52 @@ const Menu: React.FC = () => {
               </IonItem>
             ))}
           </IonList> */}
-          <IonList id="labels-list">
-            <IonListHeader>BOOKMARKS</IonListHeader>
-            <IonItem>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel> Study Islands </IonLabel>
-            </IonItem>
-            <p></p>
-            <IonButton routerLink={"/study-session"} size="small">
-              BGCSE MATH WITH TUTOR: TYRIE MOSS
-            </IonButton>
-            <p></p>
 
-            <IonItem>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel> Assignments </IonLabel>
-            </IonItem>
-            <p></p>
-            <IonButton routerLink={"/assignment"} size="small">
-              BGCSE MATH - Section 1 - MULTIPLE CHOICE
-            </IonButton>
-            <p></p>
-            <IonItem>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel> Reminders </IonLabel>
-            </IonItem>
-            <h6>
-              Assignment: BGCSE MATH - Section 1 - MULTIPLE CHOICE is due Monday
-            </h6>
-          </IonList>
+          {/* TABS BY ROLE */}
+          {/* TERNARY OP: ROLE = TUTOR */}
+          {userProfile?.role != "Tutor" ? (
+            <IonList id="labels-list">
+              <IonListHeader>BOOKMARKS</IonListHeader>
+              <IonItem>
+                <IonIcon slot="start" icon={bookmarkOutline} />
+                <IonLabel> Study Islands </IonLabel>
+              </IonItem>
+              <p></p>
+              <IonButton routerLink={"/study-session"} size="small">
+                BGCSE MATH WITH TUTOR: TYRIE MOSS
+              </IonButton>
+              <p></p>
+
+              <IonItem>
+                <IonIcon slot="start" icon={bookmarkOutline} />
+                <IonLabel> Assignments </IonLabel>
+              </IonItem>
+              <p></p>
+              <IonButton routerLink={"/assignment"} size="small">
+                BGCSE MATH - Section 1 - MULTIPLE CHOICE
+              </IonButton>
+              <p></p>
+              <IonItem>
+                <IonIcon slot="start" icon={bookmarkOutline} />
+                <IonLabel> Reminders </IonLabel>
+              </IonItem>
+              <h6>
+                Assignment: BGCSE MATH - Section 1 - MULTIPLE CHOICE is due
+                Monday
+              </h6>
+            </IonList>
+          ) : (
+            <IonList id="labels-list">
+              <IonListHeader>BOOKMARKS</IonListHeader>
+              <p></p>
+              <IonItem>
+                <IonIcon slot="start" icon={bookmarkOutline} />
+                <IonLabel> Reminders </IonLabel>
+              </IonItem>
+
+              <h6>Create Assignment: BGCSE MATH - MULTIPLE CHOICE TEST</h6>
+            </IonList>
+          )}
         </IonContent>
       </IonMenu>
     ) : null

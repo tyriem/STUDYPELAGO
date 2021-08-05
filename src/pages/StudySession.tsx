@@ -9,7 +9,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import "./Tab.css";
+import "./Page.css";
 import VideoCallFrame from "../components/VideoCallFrame";
 
 // IMPORT: USE LIBs

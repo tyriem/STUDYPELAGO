@@ -256,6 +256,7 @@ const HomePage: React.FC = () => {
       {/*-- Footer --*/}
       <IonFooter>
         <IonToolbar>
+          {/* TABS BY ROLE */}
           {/* TERNARY OP: ROLE = TUTOR */}
           {userProfile?.role === "Tutor" ? (
             <IonTabs>

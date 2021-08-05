@@ -33,6 +33,7 @@ import "./theme/variables.css";
 import { initializeFirebase } from "./data/data-services";
 import { firebaseAuth } from "./data/data-services";
 
+// IMPORT TABS
 import TabT from "./pages/tabs/TimelineTab";
 import TabTC from "./pages/tabs/TutorCenterTab";
 import TabCC from "./pages/tabs/CourseCenterTab";
@@ -51,6 +52,7 @@ import PaymentPage from "./pages/commerce/PaymentPage";
 import LoginPage from "./pages/auth/LoginPage";
 import CreateAccountPage from "./pages/auth/CreateAccountPage";
 import { useEffect, useState } from "react";
+import StudySession from "./pages/StudySession";
 
 const App: React.FC = () => {
   const [session, setSession] = useState<any>(null);
@@ -112,6 +114,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/schedule" exact={true}>
               <SchedulePage />
+            </Route>
+            <Route path="/study-session" exact={true}>
+              <StudySession />
             </Route>
             <Route path="/tabs/timeline" exact={true} component={TabT}>
               <HomePage />
