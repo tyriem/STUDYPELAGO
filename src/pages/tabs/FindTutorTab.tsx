@@ -81,19 +81,25 @@ function FindTutorTab() {
 
       <IonContent fullscreen>
         <IonCard>
+          {JSON.stringify(message)}
           {message ? (
             <IonItem>
-              <IonLabel className="ion-text-wrap">
-                {/* use firebase call to get list of tutors, and
-         render the json response */}
-                {/* <pre>{JSON.stringify(message, null, 2)}</pre> */}
-                <h2>{message?.name}</h2>
-                <h3>{message?.subject}</h3>
-                <h3>{message?.description}</h3>
-                <div style={{ width: "90%" }}>
-                  <IonImg src={message?.imageData?.downloadUrl} />
+              {message?.map(() => (
+                <div
+                  key={"1"}
+                  style={{
+                    marginTop: 5,
+                    padding: 5,
+                    border: "black 1px solid",
+                  }}
+                >
+                  <h2>{message.id}</h2>
+                  {console.log("THE MESSAGE IS", message)}
+                  <br></br>
+                  <br></br>
+                  <br></br>
                 </div>
-              </IonLabel>
+              ))}
             </IonItem>
           ) : (
             <div>NO TUTORS FOUND</div>

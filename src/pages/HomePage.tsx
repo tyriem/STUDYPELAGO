@@ -37,6 +37,7 @@ import {
 // IMPORT: ICONS
 import {
   home,
+  card,
   calendar,
   compass,
   pencil,
@@ -152,7 +153,7 @@ const HomePage: React.FC = () => {
             <IonCol size="5" size-lg offset="0.5">
               <IonChip>
                 <IonAvatar>
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                  <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
                 </IonAvatar>
                 <IonLabel>
                   <pre>
@@ -164,6 +165,12 @@ const HomePage: React.FC = () => {
                 <IonIcon icon={cube} />
                 <IonLabel>
                   <h6>Role: {userProfile?.role}</h6>
+                </IonLabel>
+              </IonChip>
+              <IonChip>
+                <IonIcon icon={card} />
+                <IonLabel>
+                  <h6>Credit: {userProfile?.credit}</h6>
                 </IonLabel>
               </IonChip>
             </IonCol>
@@ -231,7 +238,7 @@ const HomePage: React.FC = () => {
                   </IonThumbnail>
                   <IonChip>
                     <IonAvatar>
-                      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                      <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
                     </IonAvatar>
                     <IonLabel>BGCSE Tutor | Gail Woon</IonLabel>
                   </IonChip>
@@ -322,7 +329,7 @@ const HomePage: React.FC = () => {
               <IonTabBar slot="bottom">
                 <IonTabButton tab="TimelineTab" href="/tabs/timeline">
                   <IonIcon icon={home} />
-                  <IonLabel>Timeline</IonLabel>
+                  <IonLabel>Home</IonLabel>
                 </IonTabButton>
 
                 <IonTabButton tab="StudyIslandTab" href="/tabs/study-island">

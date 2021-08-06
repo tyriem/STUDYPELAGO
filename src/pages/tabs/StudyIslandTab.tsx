@@ -78,7 +78,7 @@ const StudyIslandTab: React.FC = () => {
           <IonRow>
             <IonCol size="1" size-lg offset="0.5"></IonCol>
             <p></p>
-            <IonButton routerLink={"/study-session"} size="large">
+            <IonButton routerLink={"/study-session"} size="default">
               BGCSE MATH WITH TUTOR: TYRIE MOSS
             </IonButton>
             <p></p>

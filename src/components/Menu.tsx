@@ -172,7 +172,7 @@ const Menu: React.FC = () => {
 
           {/* TABS BY ROLE */}
           {/* TERNARY OP: ROLE = TUTOR */}
-          {userProfile?.role != "Tutor" ? (
+          {userProfile?.role === "Student" ? (
             <IonList id="labels-list">
               <IonListHeader>BOOKMARKS</IonListHeader>
               <IonItem>

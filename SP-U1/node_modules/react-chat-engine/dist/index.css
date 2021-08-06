@@ -1,0 +1,946 @@
+/*!
+ * Quill Editor v1.3.7
+ * https://quilljs.com/
+ * Copyright (c) 2014, Jason Chen
+ * Copyright (c) 2013, salesforce.com
+ */
+._quill-snow__ql-container__13VQ_ {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  height: 100%;
+  margin: 0px;
+  position: relative;
+}
+._quill-snow__ql-container__13VQ_._quill-snow__ql-disabled__8VidJ ._quill-snow__ql-tooltip__2pR03 {
+  visibility: hidden;
+}
+._quill-snow__ql-container__13VQ_._quill-snow__ql-disabled__8VidJ ._quill-snow__ql-editor__3s3fs ul[data-checked] > li::before {
+  pointer-events: none;
+}
+._quill-snow__ql-clipboard__2Zm2R {
+  left: -100000px;
+  height: 1px;
+  overflow-y: hidden;
+  position: absolute;
+  top: 50%;
+}
+._quill-snow__ql-clipboard__2Zm2R p {
+  margin: 0;
+  padding: 0;
+}
+._quill-snow__ql-editor__3s3fs {
+  box-sizing: border-box;
+  line-height: 1.42;
+  height: 100%;
+  outline: none;
+  overflow-y: auto;
+  padding: 12px 15px;
+  -o-tab-size: 4;
+     tab-size: 4;
+  -moz-tab-size: 4;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+._quill-snow__ql-editor__3s3fs > * {
+  cursor: text;
+}
+._quill-snow__ql-editor__3s3fs p,
+._quill-snow__ql-editor__3s3fs ol,
+._quill-snow__ql-editor__3s3fs ul,
+._quill-snow__ql-editor__3s3fs pre,
+._quill-snow__ql-editor__3s3fs blockquote,
+._quill-snow__ql-editor__3s3fs h1,
+._quill-snow__ql-editor__3s3fs h2,
+._quill-snow__ql-editor__3s3fs h3,
+._quill-snow__ql-editor__3s3fs h4,
+._quill-snow__ql-editor__3s3fs h5,
+._quill-snow__ql-editor__3s3fs h6 {
+  margin: 0;
+  padding: 0;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol,
+._quill-snow__ql-editor__3s3fs ul {
+  padding-left: 1.5em;
+}
+._quill-snow__ql-editor__3s3fs ol > li,
+._quill-snow__ql-editor__3s3fs ul > li {
+  list-style-type: none;
+}
+._quill-snow__ql-editor__3s3fs ul > li::before {
+  content: '\2022';
+}
+._quill-snow__ql-editor__3s3fs ul[data-checked=true],
+._quill-snow__ql-editor__3s3fs ul[data-checked=false] {
+  pointer-events: none;
+}
+._quill-snow__ql-editor__3s3fs ul[data-checked=true] > li *,
+._quill-snow__ql-editor__3s3fs ul[data-checked=false] > li * {
+  pointer-events: all;
+}
+._quill-snow__ql-editor__3s3fs ul[data-checked=true] > li::before,
+._quill-snow__ql-editor__3s3fs ul[data-checked=false] > li::before {
+  color: #777;
+  cursor: pointer;
+  pointer-events: all;
+}
+._quill-snow__ql-editor__3s3fs ul[data-checked=true] > li::before {
+  content: '\2611';
+}
+._quill-snow__ql-editor__3s3fs ul[data-checked=false] > li::before {
+  content: '\2610';
+}
+._quill-snow__ql-editor__3s3fs li::before {
+  display: inline-block;
+  white-space: nowrap;
+  width: 1.2em;
+}
+._quill-snow__ql-editor__3s3fs li:not(._quill-snow__ql-direction-rtl__2Iqaw)::before {
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+  text-align: right;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-direction-rtl__2Iqaw::before {
+  margin-left: 0.3em;
+  margin-right: -1.5em;
+}
+._quill-snow__ql-editor__3s3fs ol li:not(._quill-snow__ql-direction-rtl__2Iqaw),
+._quill-snow__ql-editor__3s3fs ul li:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 1.5em;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-direction-rtl__2Iqaw,
+._quill-snow__ql-editor__3s3fs ul li._quill-snow__ql-direction-rtl__2Iqaw {
+  padding-right: 1.5em;
+}
+._quill-snow__ql-editor__3s3fs ol li {
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-0;
+}
+._quill-snow__ql-editor__3s3fs ol li:before {
+  content: counter(list-0, decimal) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-1__k7VuZ {
+  counter-increment: list-1;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-1__k7VuZ:before {
+  content: counter(list-1, lower-alpha) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-1__k7VuZ {
+  counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-2__YsnW0 {
+  counter-increment: list-2;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-2__YsnW0:before {
+  content: counter(list-2, lower-roman) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-2__YsnW0 {
+  counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-3__1JXD5 {
+  counter-increment: list-3;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-3__1JXD5:before {
+  content: counter(list-3, decimal) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-3__1JXD5 {
+  counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-4__1fWTT {
+  counter-increment: list-4;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-4__1fWTT:before {
+  content: counter(list-4, lower-alpha) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-4__1fWTT {
+  counter-reset: list-5 list-6 list-7 list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-5__2ONYb {
+  counter-increment: list-5;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-5__2ONYb:before {
+  content: counter(list-5, lower-roman) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-5__2ONYb {
+  counter-reset: list-6 list-7 list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-6__3C-ZV {
+  counter-increment: list-6;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-6__3C-ZV:before {
+  content: counter(list-6, decimal) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-6__3C-ZV {
+  counter-reset: list-7 list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-7__1XiYw {
+  counter-increment: list-7;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-7__1XiYw:before {
+  content: counter(list-7, lower-alpha) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-7__1XiYw {
+  counter-reset: list-8 list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-8__3xwOP {
+  counter-increment: list-8;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-8__3xwOP:before {
+  content: counter(list-8, lower-roman) '. ';
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-8__3xwOP {
+  counter-reset: list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-9__x8tt0 {
+  counter-increment: list-9;
+}
+._quill-snow__ql-editor__3s3fs ol li._quill-snow__ql-indent-9__x8tt0:before {
+  content: counter(list-9, decimal) '. ';
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-1__k7VuZ:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 3em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-1__k7VuZ:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 4.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-1__k7VuZ._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 3em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-1__k7VuZ._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 4.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-2__YsnW0:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 6em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-2__YsnW0:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 7.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-2__YsnW0._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 6em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-2__YsnW0._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 7.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-3__1JXD5:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 9em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-3__1JXD5:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 10.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-3__1JXD5._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 9em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-3__1JXD5._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 10.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-4__1fWTT:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 12em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-4__1fWTT:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 13.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-4__1fWTT._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 12em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-4__1fWTT._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 13.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-5__2ONYb:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 15em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-5__2ONYb:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 16.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-5__2ONYb._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 15em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-5__2ONYb._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 16.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-6__3C-ZV:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 18em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-6__3C-ZV:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 19.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-6__3C-ZV._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 18em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-6__3C-ZV._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 19.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-7__1XiYw:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 21em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-7__1XiYw:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 22.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-7__1XiYw._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 21em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-7__1XiYw._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 22.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-8__3xwOP:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 24em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-8__3xwOP:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 25.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-8__3xwOP._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 24em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-8__3xwOP._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 25.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-9__x8tt0:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 27em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-9__x8tt0:not(._quill-snow__ql-direction-rtl__2Iqaw) {
+  padding-left: 28.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-indent-9__x8tt0._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 27em;
+}
+._quill-snow__ql-editor__3s3fs li._quill-snow__ql-indent-9__x8tt0._quill-snow__ql-direction-rtl__2Iqaw._quill-snow__ql-align-right__1d1lU {
+  padding-right: 28.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-video__s15z1 {
+  display: block;
+  max-width: 100%;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-video__s15z1._quill-snow__ql-align-center__2XJO6 {
+  margin: 0 auto;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-video__s15z1._quill-snow__ql-align-right__1d1lU {
+  margin: 0 0 0 auto;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-bg-black__2mrTk {
+  background-color: #000;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-bg-red__2mI6v {
+  background-color: #e60000;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-bg-orange__Ho9Yr {
+  background-color: #f90;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-bg-yellow__1LoCg {
+  background-color: #ff0;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-bg-green__3sCCA {
+  background-color: #008a00;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-bg-blue__3FZNs {
+  background-color: #06c;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-bg-purple__1at3H {
+  background-color: #93f;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-color-white__3qYue {
+  color: #fff;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-color-red__378F5 {
+  color: #e60000;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-color-orange__qZrzu {
+  color: #f90;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-color-yellow__3RTwV {
+  color: #ff0;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-color-green__1Tc5d {
+  color: #008a00;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-color-blue__3gjv8 {
+  color: #06c;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-color-purple__2u6XP {
+  color: #93f;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-font-serif__1NGQi {
+  font-family: Georgia, Times New Roman, serif;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-font-monospace__2pcL9 {
+  font-family: Monaco, Courier New, monospace;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-size-small__gaJkv {
+  font-size: 0.75em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-size-large__m5p5b {
+  font-size: 1.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-size-huge__tiJOz {
+  font-size: 2.5em;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-direction-rtl__2Iqaw {
+  direction: rtl;
+  text-align: inherit;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-align-center__2XJO6 {
+  text-align: center;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-align-justify__2oI-h {
+  text-align: justify;
+}
+._quill-snow__ql-editor__3s3fs ._quill-snow__ql-align-right__1d1lU {
+  text-align: right;
+}
+._quill-snow__ql-editor__3s3fs._quill-snow__ql-blank__3KppU::before {
+  color: rgba(0,0,0,0.6);
+  content: attr(data-placeholder);
+  font-style: italic;
+  left: 15px;
+  pointer-events: none;
+  position: absolute;
+  right: 15px;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e:after,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  height: 24px;
+  padding: 3px 5px;
+  width: 28px;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button svg,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button svg {
+  float: left;
+  height: 100%;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:active:hover,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:active:hover {
+  outline: none;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e input._quill-snow__ql-image__3baEc[type=file],
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e input._quill-snow__ql-image__3baEc[type=file] {
+  display: none;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:focus,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:focus,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q {
+  color: #06c;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U {
+  fill: #06c;
+}
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-stroke__3JVkz,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:focus ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1:hover ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-label__Lubw1._quill-snow__ql-active__1A8xn ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb:hover ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-stroke-miter__3-_dk,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q ._quill-snow__ql-stroke-miter__3-_dk {
+  stroke: #06c;
+}
+@media (pointer: coarse) {
+  ._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn),
+  ._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) {
+    color: #444;
+  }
+  ._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-fill__2yY8U,
+  ._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-fill__2yY8U,
+  ._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U,
+  ._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U {
+    fill: #444;
+  }
+  ._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-stroke__3JVkz,
+  ._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-stroke__3JVkz,
+  ._quill-snow__ql-snow__193Gp._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-stroke-miter__3-_dk,
+  ._quill-snow__ql-snow__193Gp ._quill-snow__ql-toolbar__3Ak2e button:hover:not(._quill-snow__ql-active__1A8xn) ._quill-snow__ql-stroke-miter__3-_dk {
+    stroke: #444;
+  }
+}
+._quill-snow__ql-snow__193Gp {
+  box-sizing: border-box;
+}
+._quill-snow__ql-snow__193Gp * {
+  box-sizing: border-box;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-hidden__2wg5I {
+  display: none;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-out-bottom__1tQV2,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-out-top__26Qa2 {
+  visibility: hidden;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 {
+  position: absolute;
+  transform: translateY(10px);
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 a {
+  cursor: pointer;
+  text-decoration: none;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03._quill-snow__ql-flip__1A6A5 {
+  transform: translateY(-10px);
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-formats__1jHs4 {
+  display: inline-block;
+  vertical-align: middle;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-formats__1jHs4:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-stroke__3JVkz {
+  fill: none;
+  stroke: #444;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-stroke-miter__3-_dk {
+  fill: none;
+  stroke: #444;
+  stroke-miterlimit: 10;
+  stroke-width: 2;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-fill__2yY8U,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-fill__2yY8U {
+  fill: #444;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-empty__1jw__ {
+  fill: none;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-even__26x5C {
+  fill-rule: evenodd;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-thin__11GAO,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-stroke__3JVkz._quill-snow__ql-thin__11GAO {
+  stroke-width: 1;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-transparent__Y0G6U {
+  opacity: 0.4;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-direction__2bVp_ svg:last-child {
+  display: none;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-direction__2bVp_._quill-snow__ql-active__1A8xn svg:last-child {
+  display: inline;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-direction__2bVp_._quill-snow__ql-active__1A8xn svg:first-child {
+  display: none;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs h1 {
+  font-size: 2em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs h2 {
+  font-size: 1.5em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs h3 {
+  font-size: 1.17em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs h4 {
+  font-size: 1em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs h5 {
+  font-size: 0.83em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs h6 {
+  font-size: 0.67em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs a {
+  text-decoration: underline;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs blockquote {
+  border-left: 4px solid #ccc;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 16px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs code,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs pre {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs pre {
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs code {
+  font-size: 85%;
+  padding: 2px 4px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs pre._quill-snow__ql-syntax__2AxZ5 {
+  background-color: #23241f;
+  color: #f8f8f2;
+  overflow: visible;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-editor__3s3fs img {
+  max-width: 100%;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6 {
+  color: #444;
+  display: inline-block;
+  float: left;
+  font-size: 14px;
+  font-weight: 500;
+  height: 24px;
+  position: relative;
+  vertical-align: middle;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker-label__Lubw1 {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 2px;
+  position: relative;
+  width: 100%;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker-label__Lubw1::before {
+  display: inline-block;
+  line-height: 22px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker-options__2ZRE9 {
+  background-color: #fff;
+  display: none;
+  min-width: 100%;
+  padding: 4px 8px;
+  position: absolute;
+  white-space: nowrap;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker-options__2ZRE9 ._quill-snow__ql-picker-item__GjRFb {
+  cursor: pointer;
+  display: block;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-expanded__Gjd5o ._quill-snow__ql-picker-label__Lubw1 {
+  color: #ccc;
+  z-index: 2;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-expanded__Gjd5o ._quill-snow__ql-picker-label__Lubw1 ._quill-snow__ql-fill__2yY8U {
+  fill: #ccc;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-expanded__Gjd5o ._quill-snow__ql-picker-label__Lubw1 ._quill-snow__ql-stroke__3JVkz {
+  stroke: #ccc;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-expanded__Gjd5o ._quill-snow__ql-picker-options__2ZRE9 {
+  display: block;
+  margin-top: -1px;
+  top: 100%;
+  z-index: 1;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-icon-picker__2oL6M {
+  width: 28px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn ._quill-snow__ql-picker-label__Lubw1,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-icon-picker__2oL6M ._quill-snow__ql-picker-label__Lubw1 {
+  padding: 2px 4px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn ._quill-snow__ql-picker-label__Lubw1 svg,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-icon-picker__2oL6M ._quill-snow__ql-picker-label__Lubw1 svg {
+  right: 4px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-icon-picker__2oL6M ._quill-snow__ql-picker-options__2ZRE9 {
+  padding: 4px 0px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-icon-picker__2oL6M ._quill-snow__ql-picker-item__GjRFb {
+  height: 24px;
+  width: 24px;
+  padding: 2px 4px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn ._quill-snow__ql-picker-options__2ZRE9 {
+  padding: 3px 5px;
+  width: 152px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn ._quill-snow__ql-picker-item__GjRFb {
+  border: 1px solid transparent;
+  float: left;
+  height: 16px;
+  margin: 2px;
+  padding: 0px;
+  width: 16px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6:not(._quill-snow__ql-color-picker__1OwPn):not(._quill-snow__ql-icon-picker__2oL6M) svg {
+  position: absolute;
+  margin-top: -9px;
+  right: 0;
+  top: 50%;
+  width: 18px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1[data-label]:not([data-label=''])::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-label__Lubw1[data-label]:not([data-label=''])::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-label__Lubw1[data-label]:not([data-label=''])::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-label]:not([data-label=''])::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-item__GjRFb[data-label]:not([data-label=''])::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb[data-label]:not([data-label=''])::before {
+  content: attr(data-label);
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl {
+  width: 98px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb::before {
+  content: 'Normal';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1[data-value="1"]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="1"]::before {
+  content: 'Heading 1';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1[data-value="2"]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="2"]::before {
+  content: 'Heading 2';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1[data-value="3"]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="3"]::before {
+  content: 'Heading 3';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1[data-value="4"]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="4"]::before {
+  content: 'Heading 4';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1[data-value="5"]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="5"]::before {
+  content: 'Heading 5';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-label__Lubw1[data-value="6"]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="6"]::before {
+  content: 'Heading 6';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="1"]::before {
+  font-size: 2em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="2"]::before {
+  font-size: 1.5em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="3"]::before {
+  font-size: 1.17em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="4"]::before {
+  font-size: 1em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="5"]::before {
+  font-size: 0.83em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-header__2ULsl ._quill-snow__ql-picker-item__GjRFb[data-value="6"]::before {
+  font-size: 0.67em;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH {
+  width: 108px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-label__Lubw1::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-item__GjRFb::before {
+  content: 'Sans Serif';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-label__Lubw1[data-value=serif]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-item__GjRFb[data-value=serif]::before {
+  content: 'Serif';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-label__Lubw1[data-value=monospace]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-item__GjRFb[data-value=monospace]::before {
+  content: 'Monospace';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-item__GjRFb[data-value=serif]::before {
+  font-family: Georgia, Times New Roman, serif;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-font__3VubH ._quill-snow__ql-picker-item__GjRFb[data-value=monospace]::before {
+  font-family: Monaco, Courier New, monospace;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ {
+  width: 98px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-label__Lubw1::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb::before {
+  content: 'Normal';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-label__Lubw1[data-value=small]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb[data-value=small]::before {
+  content: 'Small';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-label__Lubw1[data-value=large]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb[data-value=large]::before {
+  content: 'Large';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-label__Lubw1[data-value=huge]::before,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb[data-value=huge]::before {
+  content: 'Huge';
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb[data-value=small]::before {
+  font-size: 10px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb[data-value=large]::before {
+  font-size: 18px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-size__3xWQJ ._quill-snow__ql-picker-item__GjRFb[data-value=huge]::before {
+  font-size: 32px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn._quill-snow__ql-background__2yOgL ._quill-snow__ql-picker-item__GjRFb {
+  background-color: #fff;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn._quill-snow__ql-color__27Nye ._quill-snow__ql-picker-item__GjRFb {
+  background-color: #000;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding: 8px;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp ._quill-snow__ql-formats__1jHs4 {
+  margin-right: 15px;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker-label__Lubw1 {
+  border: 1px solid transparent;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker-options__2ZRE9 {
+  border: 1px solid transparent;
+  box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-expanded__Gjd5o ._quill-snow__ql-picker-label__Lubw1 {
+  border-color: #ccc;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp ._quill-snow__ql-picker__1SoJ6._quill-snow__ql-expanded__Gjd5o ._quill-snow__ql-picker-options__2ZRE9 {
+  border-color: #ccc;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn ._quill-snow__ql-picker-item__GjRFb._quill-snow__ql-selected__1WU0Q,
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp ._quill-snow__ql-color-picker__1OwPn ._quill-snow__ql-picker-item__GjRFb:hover {
+  border-color: #000;
+}
+._quill-snow__ql-toolbar__3Ak2e._quill-snow__ql-snow__193Gp + ._quill-snow__ql-container__13VQ_._quill-snow__ql-snow__193Gp {
+  border-top: 0px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 5px #ddd;
+  color: #444;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03::before {
+  content: "Visit URL:";
+  line-height: 26px;
+  margin-right: 8px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 input[type=text] {
+  display: none;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  height: 26px;
+  margin: 0px;
+  padding: 3px 5px;
+  width: 170px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 a._quill-snow__ql-preview__3G1dE {
+  display: inline-block;
+  max-width: 200px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 a._quill-snow__ql-action__1Jg00::after {
+  border-right: 1px solid #ccc;
+  content: 'Edit';
+  margin-left: 16px;
+  padding-right: 8px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 a._quill-snow__ql-remove__UMMx7::before {
+  content: 'Remove';
+  margin-left: 8px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03 a {
+  line-height: 26px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03._quill-snow__ql-editing__3TOtn a._quill-snow__ql-preview__3G1dE,
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03._quill-snow__ql-editing__3TOtn a._quill-snow__ql-remove__UMMx7 {
+  display: none;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03._quill-snow__ql-editing__3TOtn input[type=text] {
+  display: inline-block;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03._quill-snow__ql-editing__3TOtn a._quill-snow__ql-action__1Jg00::after {
+  border-right: 0px;
+  content: 'Save';
+  padding-right: 0px;
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03[data-mode=link]::before {
+  content: "Enter link:";
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03[data-mode=formula]::before {
+  content: "Enter formula:";
+}
+._quill-snow__ql-snow__193Gp ._quill-snow__ql-tooltip__2pR03[data-mode=video]::before {
+  content: "Enter video:";
+}
+._quill-snow__ql-snow__193Gp a {
+  color: #06c;
+}
+._quill-snow__ql-container__13VQ_._quill-snow__ql-snow__193Gp {
+  border: 1px solid #ccc;
+}
