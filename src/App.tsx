@@ -3,9 +3,6 @@ import {
   IonLoading,
   IonRouterOutlet,
   IonSplitPane,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
@@ -89,6 +86,7 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
+      {/* [TODO] #3 RESOLVE ROUTER DUPLICATION [TODO] */}
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <PrivateRoute>

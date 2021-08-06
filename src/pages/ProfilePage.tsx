@@ -3,7 +3,6 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonImg,
   IonLoading,
   IonMenuButton,
   IonPage,
@@ -11,10 +10,12 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { firebaseAuth, firebaseApp, firebaseStorage } from "../store/firebase";
+import { firebaseAuth, firebaseStorage } from "../data/firebase";
 import "./Page.css";
 // import img
 import iconImg from "../assets/img/user-icon.png";
+
+// [TODO] #5 IMPLEMENT STYLIZED PROFILE PAGE WITH PROFILE IMAGE UPLOAD [TODO]
 
 const ProfilePage: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<any>(null);

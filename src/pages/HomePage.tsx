@@ -22,14 +22,10 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
-  IonCardSubtitle,
   IonCardTitle,
   IonCol,
   IonGrid,
-  IonInput,
-  IonItem,
   IonRow,
-  IonThumbnail,
   IonFooter,
   IonAvatar,
   IonChip,
@@ -42,9 +38,7 @@ import {
   compass,
   pencil,
   search,
-  add,
   cash,
-  closeCircle,
   cube,
 } from "ionicons/icons";
 // IMPORT: REACT-ROUTER LIBs
@@ -61,8 +55,6 @@ import TabFT from "./tabs/FindTutorTab";
 //IMPORT: FIREBASE LIBs
 
 import { firebaseAuth, firebaseApp } from "../data/data-services";
-import { getTutorData } from "../data/data-services";
-import { getCourseData } from "../data/data-services";
 
 // IMPORT: USE LIBs
 import { useEffect, useState } from "react";
@@ -71,10 +63,8 @@ import { useEffect, useState } from "react";
 import welcomeImg from "../assets/img/welcome.jpg";
 
 //IMPORT: IMAGE POST
-import postImg from "../assets/img/post.jpg";
 
 //IMPORT: PAYMENT PAGE
-import PaymentPage from "./commerce/PaymentPage";
 
 const HomePage: React.FC = () => {
   const history = useHistory();
@@ -204,7 +194,7 @@ const HomePage: React.FC = () => {
             </IonButton>
           </IonModal>
         ) : null}
-        {/* EXAMPLE TIMELINE POST: 1 */}
+        {/* STUDYPELAGO STATS */}
         <IonGrid>
           <IonRow>
             <IonCol size="12" size-lg offset="0">
@@ -213,6 +203,7 @@ const HomePage: React.FC = () => {
                   <IonCardTitle>Studypelago Stats</IonCardTitle>
                 </IonCardHeader>
 
+                {/* [TODO] #4 TAKE STATS FROM FIREBASE DATA] */}
                 <IonCardContent>
                   <iframe
                     width="100%"
@@ -223,36 +214,6 @@ const HomePage: React.FC = () => {
                     Take a quick look at how our students are performing across
                     the platform.
                   </h1>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-
-        {/* EXAMPLE TIMELINE POST: 2 */}
-        <IonGrid>
-          <IonRow>
-            <IonCol size="12" size-lg offset="0">
-              <IonCard color="secondary">
-                <IonCardHeader>
-                  <IonThumbnail slot="start">
-                    {/* ION-IMG: Render Image */}
-                    <IonImg src={postImg}></IonImg>
-                  </IonThumbnail>
-                  <IonChip>
-                    <IonAvatar>
-                      <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
-                    </IonAvatar>
-                    <IonLabel>BGCSE Tutor | Gail Woon</IonLabel>
-                  </IonChip>
-                  <IonCardSubtitle></IonCardSubtitle>
-                  <IonCardSubtitle>Timeline Post: </IonCardSubtitle>
-                </IonCardHeader>
-
-                <IonCardContent>
-                  {/* ION-IMG: Render Image */}
-                  <IonImg src={postImg}></IonImg>
-                  Getting ready for my first #Studypelago sesh. Wish me luck!
                 </IonCardContent>
               </IonCard>
             </IonCol>

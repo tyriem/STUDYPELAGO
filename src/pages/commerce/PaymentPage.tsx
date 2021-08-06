@@ -9,7 +9,8 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 
-//TODO: #1 IMPLEMENT PAYPAL INTEGRATION | ISSUE: GLOBAL VAR RECOGNIZING
+// [TODO]: #9 FUNC TO TIE PAYMENT WITH CREDIT [TODO]
+
 //DECLARE: Global variable paypal
 declare var paypal: any;
 

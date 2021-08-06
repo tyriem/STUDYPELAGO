@@ -11,7 +11,7 @@ import {
   IonLabel,
   IonPage,
   IonTitle,
-  // import for rendering alerts
+  // IMPORT: RENDER ALERTS
   useIonAlert,
   IonToolbar,
   IonCard,
@@ -24,11 +24,13 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import "../Page.css";
 
-// import firebase declared in firebase.js
-import { firebaseAuth } from "../../store/firebase";
+// IMPORT: FIREBASE AUTH MODULE FROM FIREBASE.JS
+import { firebaseAuth } from "../../data/firebase";
 
-// import img
+// IMPORT: IMG - Welcome
 import welcomeImg from "../../assets/img/welcome.jpg";
+
+// [TODO]: #8 IMPLEMENT SWIPER.JS [TODO]
 
 const LoginPage: React.FC = () => {
   const history = useHistory();
@@ -43,7 +45,7 @@ const LoginPage: React.FC = () => {
   const doLogin = async () => {
     try {
       // STEP 1 - LOGIN USER
-      // response contains, error, data, user, session
+      // RESULT: error, data, user, session
       const result = await firebaseAuth.signInWithEmailAndPassword(
         email,
         password
@@ -53,7 +55,7 @@ const LoginPage: React.FC = () => {
 
       history.replace("/home");
     } catch (error: any) {
-      // error check for creating user...
+      // ERROR CHECK: User Creation
       if (error) {
         present({
           header: "Error Logging In User",

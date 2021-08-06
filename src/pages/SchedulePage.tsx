@@ -9,7 +9,6 @@ import {
 } from "@ionic/react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import { firebaseAuth, firebaseApp } from "../data/data-services";
 import { InlineWidget } from "react-calendly";
 
 import "./Page.css";
@@ -42,7 +41,7 @@ const SchedulePage: React.FC = () => {
             <IonTitle size="large">SCHEDULE</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* TODO: #2 PROGRAMMATIC CALENDAR LOGIC HERE: https://github.com/Kiarash-Z/react-modern-calendar-datepicker */}
+        {/* [TODO] #6 IMPLEMENT PROGRAMMATIC CALENDAR LOGIC HERE: https://github.com/Kiarash-Z/react-modern-calendar-datepicker [TODO]*/}
         <div>
           <InlineWidget url="https://calendly.com/studypelago/60min" />
         </div>

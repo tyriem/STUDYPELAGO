@@ -16,11 +16,10 @@ import {
   IonSelectOption,
 } from "@ionic/react";
 import firebase from "firebase";
-import { options } from "ionicons/icons";
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-// import firebase client
+// IMPORT: FIREBASE APP & AUTH FROM DATA-SERVICES
 import { firebaseAuth, firebaseApp } from "../../data/data-services";
 
 // START OF COMPONENT
@@ -220,7 +219,7 @@ const CreateAccountPage: React.FC = () => {
           <IonSelect
             onIonChange={(event: any) => setCountry(event.target.value)}
           >
-            <IonSelectOption value="AR">ARUBA</IonSelectOption>
+            <IonSelectOption value="AR">Aruba</IonSelectOption>
             <IonSelectOption value="BHS">Bahamas, The</IonSelectOption>
             <IonSelectOption value="BB">Barbados</IonSelectOption>
             <IonSelectOption value="JA">Jamaica</IonSelectOption>

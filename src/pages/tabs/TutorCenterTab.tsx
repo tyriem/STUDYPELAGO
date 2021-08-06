@@ -9,7 +9,6 @@ import {
   IonItem,
   IonLabel,
   IonLoading,
-  IonMenuButton,
   IonPage,
   IonSelect,
   IonSelectOption,
@@ -45,6 +44,7 @@ const TutorCenterTab: React.FC = () => {
       if (imageError) {
         throw imageError;
       }
+      // [TODO] #14 SET UPLOAD OVERWRITE ENTRY IN DATABASE [TODO]
 
       // STEP 2 - ADD PRODUCT INFO TO DATABASE, INCLUDE LINK
       // TO IMAGE IN FIREBASE STORAGE
@@ -126,7 +126,7 @@ const TutorCenterTab: React.FC = () => {
               BGCSE
             </IonSelectOption>
             <IonSelectOption value="Grade Level Assessment Test - Tutor">
-              GLAAT
+              GLAT
             </IonSelectOption>
           </IonSelect>
         </IonItem>
