@@ -103,7 +103,6 @@ function FindTutorTab() {
                       <div style={{ width: "10%" }}>
                         <IonImg src={id.imageData?.downloadUrl} />
                       </div>
-                      <div>Tutor Rating: {id.stars}</div>
 
                       <br></br>
                     </div>
