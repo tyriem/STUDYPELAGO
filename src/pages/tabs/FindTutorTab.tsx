@@ -6,7 +6,9 @@ import {
 } from "../../data/data-services";
 import { getTutorData } from "../../data/data-services";
 import {
+  IonAvatar,
   IonBackButton,
+  IonButton,
   IonButtons,
   IonCard,
   IonChip,
@@ -27,8 +29,8 @@ import {
 } from "@ionic/react";
 import "./Tab.css";
 import { Redirect, Route, useParams } from "react-router";
-import { PopupWidget } from "react-calendly";
-import { home, calendar, pencil, compass, search } from "ionicons/icons";
+import { PopupButton } from "react-calendly";
+import { home, calendar, pencil, compass, search, star } from "ionicons/icons";
 
 // IMPORT TABS
 import TabT from "./TimelineTab";
@@ -46,7 +48,9 @@ function FindTutorTab() {
     (async () => {
       const msg = await getTutorData();
       setMessage(msg);
+      console.log("The MSG IS:", msg);
     })();
+
     const loadUserProfile = async () => {
       const userId = firebaseAuth.currentUser?.uid;
       console.log("User ID: ", userId);
@@ -81,38 +85,44 @@ function FindTutorTab() {
 
       <IonContent fullscreen>
         <IonCard>
-          {JSON.stringify(message)}
           {message ? (
             <IonItem>
-              {message?.map(() => (
-                <div
-                  key={"1"}
-                  style={{
-                    marginTop: 5,
-                    padding: 5,
-                    border: "black 1px solid",
-                  }}
-                >
-                  <h2>{message.id}</h2>
-                  {console.log("THE MESSAGE IS", message)}
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                </div>
-              ))}
+              <IonLabel className="ion-text-wrap">
+                {message.map((id: any, index: string) => {
+                  return (
+                    <div key={index}>
+                      <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
+                      <div>Tutor Name: {id.name}</div>
+                      <div>Tutor Description: {id.description}</div>
+                      <div>Tutor Type: {id.subject}</div>
+                      <div>
+                        Tutor Rating: <IonIcon icon={home} />{" "}
+                        <IonIcon icon={home} /> <IonIcon icon={home} />{" "}
+                        <IonIcon icon={home} />
+                      </div>
+                      <div style={{ width: "10%" }}>
+                        <IonImg src={id.imageData?.downloadUrl} />
+                      </div>
+                      <div>Tutor Rating: {id.stars}</div>
+
+                      <br></br>
+                    </div>
+                  );
+                })}
+              </IonLabel>
             </IonItem>
           ) : (
             <div>NO TUTORS FOUND</div>
           )}
+          <IonItem>
+            <IonButton size="large">
+              <PopupButton
+                text="Request a Session with Tutor: Tyrie Moss"
+                url="https://calendly.com/studypelago"
+              />
+            </IonButton>
+          </IonItem>
         </IonCard>
-        <IonItem>
-          <PopupWidget
-            color="#42C4D1"
-            text="Request a Session with Tutor: Tyrie Moss"
-            textColor="#ffffff"
-            url="https://calendly.com/studypelago"
-          />
-        </IonItem>
       </IonContent>
       <IonFooter>
         <IonToolbar>

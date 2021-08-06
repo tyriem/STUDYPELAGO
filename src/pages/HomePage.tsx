@@ -167,12 +167,15 @@ const HomePage: React.FC = () => {
                   <h6>Role: {userProfile?.role}</h6>
                 </IonLabel>
               </IonChip>
-              <IonChip>
-                <IonIcon icon={card} />
-                <IonLabel>
-                  <h6>Credit: {userProfile?.credit}</h6>
-                </IonLabel>
-              </IonChip>
+              {/* TERNARY OP: ROLE = TUTOR */}
+              {userProfile?.role != "Tutor" ? (
+                <IonChip>
+                  <IonIcon icon={card} />
+                  <IonLabel>
+                    <h6>Credit: {userProfile?.credit}</h6>
+                  </IonLabel>
+                </IonChip>
+              ) : null}
             </IonCol>
           </IonRow>
         </IonGrid>

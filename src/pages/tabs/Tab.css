@@ -95,3 +95,8 @@ ion-segment-button {
 #container a {
   text-decoration: none;
 }
+
+#popupContainer {
+  left: 100% !important;
+  margin-left: 1000px !important;
+}
