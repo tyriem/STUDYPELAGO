@@ -9,6 +9,7 @@ import {
   IonHeader,
   IonIcon,
   IonLabel,
+  IonModal,
   IonPage,
   IonRouterOutlet,
   IonRow,
@@ -19,6 +20,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./Tab.css";
+import VideoCallFrame from "../../components/VideoCallFrame";
 
 // IMPORT TABS
 import TabT from "./TimelineTab";
@@ -34,6 +36,8 @@ import { Redirect, Route } from "react-router";
 import { firebaseAuth, firebaseApp } from "../../data/data-services";
 
 const StudyIslandTab: React.FC = () => {
+  const [showModal, setShowModal] = useState(true);
+
   const [userProfile, setUserProfile] = useState<any>(null);
 
   // GET DOCUMENT "USERS"
@@ -70,40 +74,26 @@ const StudyIslandTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {/* [TODO] #12 IMPLEMENT STUDY ISLAND PROGRAMMATICALLY [TODO] */}
-        {/* [TODO] #13 IMPLEMENT INSTANT MESSENGER PROGRAMMATICALLY [TODO] */}
         <IonGrid>
           <IonRow>
             <IonCol size="1" size-lg offset="0.5"></IonCol>
             <p></p>
-            <IonButton routerLink={"/study-session"} size="large">
+            <IonButton routerLink={"/study-session"} size="default">
               BGCSE MATH WITH TUTOR: TYRIE MOSS
             </IonButton>
             <p></p>
             <p></p>
-            <IonButton
-              routerLink={"/study-session"}
-              disabled={true}
-              size="large"
-            >
+            <IonButton routerLink={"/study-session"} disabled={true}>
               BGCSE ENGLISH WITH TUTOR: GAIL WOON
             </IonButton>
             <p></p>
             <p></p>
-            <IonButton
-              routerLink={"/study-session"}
-              disabled={true}
-              size="large"
-            >
+            <IonButton routerLink={"/study-session"} disabled={true}>
               BGCSE PHYSICS WITH TUTOR: JOHN DOE
             </IonButton>
             <p></p>
             <p></p>
-            <IonButton
-              routerLink={"/study-session"}
-              disabled={true}
-              size="large"
-            >
+            <IonButton routerLink={"/study-session"} disabled={true}>
               BGCSE CHEMISTRY WITH TUTOR: JANE DOE
             </IonButton>
             <p></p>

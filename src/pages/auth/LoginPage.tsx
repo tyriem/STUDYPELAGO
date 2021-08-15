@@ -24,13 +24,12 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import "../Page.css";
 
-// IMPORT: FIREBASE AUTH MODULE FROM FIREBASE.JS
+// IMPORT: firebaseAuth from data modules
 import { firebaseAuth } from "../../data/firebase";
 
-// IMPORT: IMG - Welcome
+// IMPORT: IMG - welcome
 import welcomeImg from "../../assets/img/welcome.jpg";
-
-// [TODO]: #8 IMPLEMENT SWIPER.JS [TODO]
+import { firebaseApp } from "../../data/data-services";
 
 const LoginPage: React.FC = () => {
   const history = useHistory();
@@ -40,12 +39,12 @@ const LoginPage: React.FC = () => {
   // used to render platform specific alerts
   const [present] = useIonAlert();
 
-  // firebase documentation
+  // FIREBASE DOCs
   // https://firebase.google.com/docs/auth/web/password-auth?authuser=0
   const doLogin = async () => {
     try {
       // STEP 1 - LOGIN USER
-      // RESULT: error, data, user, session
+      // response contains, error, data, user, session
       const result = await firebaseAuth.signInWithEmailAndPassword(
         email,
         password
@@ -55,7 +54,7 @@ const LoginPage: React.FC = () => {
 
       history.replace("/home");
     } catch (error: any) {
-      // ERROR CHECK: User Creation
+      // error check for creating user...
       if (error) {
         present({
           header: "Error Logging In User",
@@ -78,7 +77,7 @@ const LoginPage: React.FC = () => {
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>STUDYPELAGO</IonCardTitle>
-            <IonCardSubtitle>STUDY ISLANDS ONLINE: 700</IonCardSubtitle>
+            <IonCardSubtitle>STUDYPELAGO CITIZENS: 700</IonCardSubtitle>
           </IonCardHeader>
           <IonGrid>
             <IonRow>
@@ -90,6 +89,7 @@ const LoginPage: React.FC = () => {
           </IonGrid>
           <IonCardContent>
             Welcome to Studypelago, the Caribbean's premier tutor services app!
+            {/* TODO: #15 WRAP INPUT IN FORM */}
             <IonItem>
               <IonLabel position="fixed">email</IonLabel>
               <IonInput

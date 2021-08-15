@@ -3,6 +3,9 @@ import {
   IonLoading,
   IonRouterOutlet,
   IonSplitPane,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
@@ -40,16 +43,18 @@ import TabFT from "./pages/tabs/FindTutorTab";
 //IMPORT SIDE MENU
 import Menu from "./components/Menu";
 
-//IMPORT HOME PAGE
+//IMPORT PAGES
 import HomePage from "./pages/HomePage";
-
 import DetailPage from "./pages/ProfilePage";
+import TimelineCenter from "./pages/TimelineCenter";
 import SchedulePage from "./pages/SchedulePage";
 import PaymentPage from "./pages/commerce/PaymentPage";
 import LoginPage from "./pages/auth/LoginPage";
 import CreateAccountPage from "./pages/auth/CreateAccountPage";
-import { useEffect, useState } from "react";
 import StudySession from "./pages/StudySession";
+
+// IMPORT USE
+import { useEffect, useState } from "react";
 
 const App: React.FC = () => {
   const [session, setSession] = useState<any>(null);
@@ -76,7 +81,7 @@ const App: React.FC = () => {
 
   initializeFirebase();
 
-  // if we have't checked for session yet, then display loading screen
+  // DISPLAY LOADING SCREEN IF SESS HAS NOT BEEN CHECKED
   if (loading)
     return (
       <IonApp>
@@ -86,7 +91,6 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      {/* [TODO] #3 RESOLVE ROUTER DUPLICATION [TODO] */}
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <PrivateRoute>
@@ -138,6 +142,13 @@ const App: React.FC = () => {
             >
               <PaymentPage />
             </Route>
+            <Route
+              path="/timeline-center"
+              exact={true}
+              component={TimelineCenter}
+            >
+              <TimelineCenter />
+            </Route>
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
@@ -153,7 +164,7 @@ export default App;
  * @returns
  */
 const PrivateRoute = ({ component: Component, ...rest }: any) => {
-  // useAuth is some custom hook to get the current user's auth state
+  // isAuth HOOK TO CHECK IF USER IS AUTHENTICATED
   const isAuth = firebaseAuth.currentUser;
 
   return (

@@ -25,7 +25,7 @@ import {
 } from "ionicons/icons";
 import { useHistory } from "react-router";
 import "./Menu.css";
-import { firebaseApp, firebaseAuth } from "../data/firebase";
+import { firebaseApp, firebaseAuth } from "../store/firebase";
 
 // import img
 import iconImg from "../assets/img/user-icon.png";

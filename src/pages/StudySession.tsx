@@ -1,8 +1,10 @@
 import {
   IonBackButton,
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
+  IonModal,
   IonPage,
   IonTitle,
   IonToolbar,
@@ -11,6 +13,7 @@ import "./Page.css";
 import VideoCallFrame from "../components/VideoCallFrame";
 
 // IMPORT: USE LIBs
+import { useEffect, useState } from "react";
 
 const StudySession: React.FC = () => {
   return (
@@ -29,7 +32,6 @@ const StudySession: React.FC = () => {
             <IonTitle size="large">SESSION WITH TUTOR: TYRIE MOSS</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* [TODO] #7 IMPLEMENT CHAT AND CALL PROGRAMMATICALLY [TODO] */}
         <VideoCallFrame
           url={process.env.REACT_APP_DAILY_ROOM_URL}
         ></VideoCallFrame>

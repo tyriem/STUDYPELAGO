@@ -9,7 +9,10 @@ import {
   IonItem,
   IonLabel,
   IonLoading,
+  IonMenuButton,
   IonPage,
+  IonSelect,
+  IonSelectOption,
   IonTextarea,
   IonTitle,
   IonToolbar,
@@ -115,7 +118,6 @@ const CourseCenterTab: React.FC = () => {
             onIonChange={(event: any) => setDescription(event.target.value)}
           />
         </IonItem>
-        {/* [TODO] #10 IMPLEMENT H5P OR ALTERNATIVE INTEGRATION [TODO]*/}
         <iframe
           src="https://h5p.org/h5p/embed/1202919"
           width="1090"

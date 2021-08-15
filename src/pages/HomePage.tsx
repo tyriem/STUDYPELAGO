@@ -22,27 +22,35 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
+  IonCardSubtitle,
   IonCardTitle,
   IonCol,
   IonGrid,
+  IonInput,
+  IonItem,
   IonRow,
+  IonThumbnail,
   IonFooter,
   IonAvatar,
   IonChip,
 } from "@ionic/react";
 // IMPORT: ICONS
 import {
-  home,
+  add,
   card,
+  cash,
   calendar,
+  closeCircle,
   compass,
+  cube,
+  home,
+  nutrition,
   pencil,
   search,
-  cash,
-  cube,
+  school,
 } from "ionicons/icons";
 // IMPORT: REACT-ROUTER LIBs
-import { Route, Redirect, useHistory } from "react-router";
+import { Route, Redirect, useHistory, useParams } from "react-router";
 import "./Page.css";
 
 //IMPORT: TAB COMPONENTS
@@ -53,29 +61,48 @@ import TabSI from "./tabs/StudyIslandTab";
 import TabFT from "./tabs/FindTutorTab";
 
 //IMPORT: FIREBASE LIBs
-
 import { firebaseAuth, firebaseApp } from "../data/data-services";
+import { getTutorData } from "../data/data-services";
+import { getCourseData } from "../data/data-services";
+import { getTimelineData } from "../data/data-services";
 
 // IMPORT: USE LIBs
 import { useEffect, useState } from "react";
+
+// IMPORT: CHART JS
+import { Line, Bar, Pie, Doughnut } from "react-chartjs-2";
 
 //IMPORT: IMAGE WELCOME
 import welcomeImg from "../assets/img/welcome.jpg";
 
 //IMPORT: IMAGE POST
+import postImg from "../assets/img/post.jpg";
 
 //IMPORT: PAYMENT PAGE
+import PaymentPage from "./commerce/PaymentPage";
+
+//IMPORT: PAYMENT PAGE
+import TimelineCenter from "./TimelineCenter";
 
 const HomePage: React.FC = () => {
   const history = useHistory();
   const [userProfile, setUserProfile] = useState<any>(null);
+  const [platStat, setPlatStat] = useState<any>(null);
   const [showModal, setShowModal] = useState(true);
+  const [message, setMessage] = useState<any>();
+  const params = useParams<any>();
 
   // RENDER ANDR OR IOS ALERTS
   const [present] = useIonAlert();
 
   // GET DOCUMENT "USERS"
   useEffect(() => {
+    (async () => {
+      const msg = await getTimelineData();
+      setMessage(msg);
+      console.log("The TIMELINE FEED IS:", msg);
+    })();
+
     const loadUserProfile = async () => {
       const userId = firebaseAuth.currentUser?.uid;
       console.log("User ID: ", userId);
@@ -90,8 +117,21 @@ const HomePage: React.FC = () => {
       console.log("Data Response: ", dataResponse.data);
     };
 
+    const loadPlatStat = async () => {
+      const dataUser = await firebaseApp
+        .firestore()
+        .collection("platform")
+        .doc("user-stats")
+        .get();
+
+      // SET THE USER DATA FROM DOCUMENT
+      setPlatStat(dataUser.data());
+      console.log("THE NUMBER OF USERS IS: ", dataUser.data);
+    };
+
     console.log("get user profile information...");
     loadUserProfile();
+    loadPlatStat();
   }, []);
 
   // END FIRST RUN PROTOCOL
@@ -106,7 +146,7 @@ const HomePage: React.FC = () => {
       // NO ERROR: RENDER TIMELINE/HOME
       history.replace("/tabs/timeline");
     } catch (error: any) {
-      // ERROR CHECK: Ending first run...
+      // ERROR CHECK: Ending First Run...
       if (error) {
         present({
           header: "Error Ending First Run",
@@ -116,6 +156,61 @@ const HomePage: React.FC = () => {
         return;
       }
     }
+  };
+
+  //Set Data for Bar Chart: USERS
+  const usersBarChartData = {
+    labels: ["Studypelago Users"],
+    datasets: [
+      {
+        label: "Platform Users",
+        backgroundColor: ["#42C4D1"],
+        borderColor: ["black"],
+        borderWidth: 2,
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)",
+        data: [JSON.stringify(platStat?.users)],
+      },
+    ],
+  };
+
+  //Set Data for Doughnut Chart: ROLES
+  const roleDoughnutChartData = {
+    labels: ["Tutors", "Students", "Parents"],
+    datasets: [
+      {
+        label: "User Breakdown",
+        backgroundColor: ["#42C4D1", "#B6D0E2", "#FFFFFF"],
+        borderColor: "black",
+        borderWidth: 2,
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)",
+        data: [
+          JSON.stringify(platStat?.roleT),
+          JSON.stringify(platStat?.roleS),
+          JSON.stringify(platStat?.roleP),
+        ],
+      },
+    ],
+  };
+
+  //Set Data for Pie Chart: DEMOGRAPHICS
+  const demographPieChartData = {
+    labels: ["Female", "Male"],
+    datasets: [
+      {
+        label: "Student Demographics",
+        backgroundColor: ["#42C4D1", "#B6D0E2", "#FFFFFF"],
+        borderColor: "black",
+        borderWidth: 2,
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)",
+        data: [
+          JSON.stringify(platStat?.genderF),
+          JSON.stringify(platStat?.genderM),
+        ],
+      },
+    ],
   };
 
   return (
@@ -130,13 +225,24 @@ const HomePage: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen className="ion-padding">
-        {/*-- PAYMENT FAB --*/}
-        <IonFab vertical="top" horizontal="end" slot="fixed">
-          <IonFabButton href="/commerce/payment">
-            {/* {history.replace("/commerce/payment")} */}
-            <IonIcon icon={cash} />
-          </IonFabButton>
-        </IonFab>
+        {/*-- TERNARY OP: ROLE != TUTOR |  PAYMENT FAB OR TIMELINE FAB | --*/}
+        {userProfile?.role != "Tutor" ? (
+          // PAYMENT FAB
+          <IonFab vertical="top" horizontal="end" slot="fixed">
+            <IonFabButton href="/commerce/payment">
+              {/* {history.replace("/commerce/payment")} */}
+              <IonIcon icon={cash} />
+            </IonFabButton>
+          </IonFab>
+        ) : (
+          // TIMELINE FAB
+          <IonFab vertical="top" horizontal="end" slot="fixed">
+            <IonFabButton href="/timeline-center">
+              {/* {history.replace("/timeline-center")} */}
+              <IonIcon icon={add} />
+            </IonFabButton>
+          </IonFab>
+        )}
 
         <IonGrid>
           <IonRow>
@@ -151,13 +257,23 @@ const HomePage: React.FC = () => {
                   </pre>
                 </IonLabel>
               </IonChip>
-              <IonChip>
-                <IonIcon icon={cube} />
-                <IonLabel>
-                  <h6>Role: {userProfile?.role}</h6>
-                </IonLabel>
-              </IonChip>
-              {/* TERNARY OP: ROLE = TUTOR */}
+              {/*-- TERNARY OP: ROLE != TUTOR |  ROLE STUDENT / PARENT OR TUTOR | --*/}
+              {userProfile?.role != "Tutor" ? (
+                <IonChip>
+                  <IonIcon icon={school} />
+                  <IonLabel>
+                    <h6>Role: {userProfile?.role}</h6>
+                  </IonLabel>
+                </IonChip>
+              ) : (
+                <IonChip>
+                  <IonIcon icon={nutrition} />
+                  <IonLabel>
+                    <h6>Role: {userProfile?.role}</h6>
+                  </IonLabel>
+                </IonChip>
+              )}
+              {/*-- TERNARY OP: ROLE != TUTOR |  PAYMENT CREDITS OR NULL | --*/}
               {userProfile?.role != "Tutor" ? (
                 <IonChip>
                   <IonIcon icon={card} />
@@ -173,52 +289,114 @@ const HomePage: React.FC = () => {
         {/* MODAL: FIRST RUN PROTOCOL */}
         {userProfile?.firstRun && userProfile?.role != "Tutor" ? (
           <IonModal isOpen={showModal}>
-            Thank you for joining Studypelago,
-            {userProfile?.firstName} {userProfile?.lastName}
-            {/* ION-IMG: Render Image */}
-            <IonImg src={welcomeImg}></IonImg>
-            <h4>
-              We at Studypelago would like to thank you for trying our service.{" "}
-              <p></p>
-              Would you like to find a tutor immediately or have a quick tour of
-              our app?
-            </h4>
-            <IonButton routerLink={"/commerce/product"}>FIND A TUTOR</IonButton>
-            <IonButton
-              onClick={() => {
-                doEndFirstRun();
-                setShowModal(false);
-              }}
-            >
-              TOUR STUDYPELAGO
-            </IonButton>
+            <IonCard>
+              Thank you for joining Studypelago, {userProfile?.firstName}{" "}
+              {userProfile?.lastName}
+              {/* ION-IMG: Render Image */}
+              <IonImg src={welcomeImg}></IonImg>
+              <h4>
+                We at Studypelago would like to thank you for trying our
+                service. <p></p>
+                Would you like to find a tutor immediately or have a quick tour
+                of our app?
+              </h4>
+              <IonButton routerLink={"/commerce/product"}>
+                FIND A TUTOR
+              </IonButton>
+              <IonButton
+                onClick={() => {
+                  doEndFirstRun();
+                  setShowModal(false);
+                }}
+              >
+                TOUR STUDYPELAGO
+              </IonButton>
+            </IonCard>
           </IonModal>
         ) : null}
-        {/* STUDYPELAGO STATS */}
+        {/* TIMELINE POST: STATS*/}
         <IonGrid>
           <IonRow>
             <IonCol size="12" size-lg offset="0">
               <IonCard color="secondary">
                 <IonCardHeader>
                   <IonCardTitle>Studypelago Stats</IonCardTitle>
+                  <IonCardSubtitle>
+                    A quick look at our education platform
+                  </IonCardSubtitle>
                 </IonCardHeader>
 
-                {/* [TODO] #4 TAKE STATS FROM FIREBASE DATA] */}
                 <IonCardContent>
-                  <iframe
-                    width="100%"
-                    height="250"
-                    src="//plotly.com/dashboard/Isle:2/embed"
-                  ></iframe>
-                  <h1>
-                    Take a quick look at how our students are performing across
-                    the platform.
-                  </h1>
+                  {/* Bind the Bar Chart with the Data */}
+                  <Bar
+                    data={usersBarChartData}
+                    options={{ maintainAspectRatio: true }}
+                  />
+
+                  <Doughnut
+                    data={roleDoughnutChartData}
+                    options={{ maintainAspectRatio: true }}
+                  />
+                  <Pie
+                    data={demographPieChartData}
+                    options={{ maintainAspectRatio: true }}
+                  />
                 </IonCardContent>
               </IonCard>
             </IonCol>
           </IonRow>
         </IonGrid>
+
+        {/* TIMELINE POSTS */}
+        {message ? (
+          <IonItem>
+            {message.map((id: any, index: string) => {
+              return (
+                <div key={index}>
+                  <IonGrid>
+                    <IonRow>
+                      <IonCol size="12" size-lg offset="0">
+                        <IonCard color="secondary">
+                          <IonCardHeader>
+                            <IonThumbnail slot="start">
+                              {/* ION-IMG: Render Image */}
+                              <IonImg src={postImg}></IonImg>
+                            </IonThumbnail>
+
+                            <IonCardTitle>
+                              <strong>{id.timelineTitle}</strong>
+                            </IonCardTitle>
+                            <IonChip>
+                              <IonAvatar>
+                                <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
+                              </IonAvatar>
+                              <IonLabel>
+                                Post by: {id.role} {id.name}
+                              </IonLabel>
+                            </IonChip>
+                          </IonCardHeader>
+                          <IonCardContent>
+                            <div style={{ width: "50%" }}>
+                              <IonImg src={id.imageData?.downloadUrl} />
+                            </div>
+                            <div>
+                              {" "}
+                              <h1>{id.timelineBody} </h1>
+                            </div>
+
+                            <br></br>
+                          </IonCardContent>
+                        </IonCard>
+                      </IonCol>
+                    </IonRow>
+                  </IonGrid>
+                </div>
+              );
+            })}
+          </IonItem>
+        ) : (
+          <div>NO NEW TIMELINE POSTS</div>
+        )}
 
         {/* use firebase auth api to get current user, and
          render the json response */}
@@ -253,7 +431,7 @@ const HomePage: React.FC = () => {
                   exact={true}
                 />
               </IonRouterOutlet>
-              <IonTabBar slot="bottom">
+              <IonTabBar slot="bottom" color="white">
                 <IonTabButton tab="TimelineTab" href="/tabs/timeline">
                   <IonIcon icon={home} />
                   <IonLabel>Home</IonLabel>

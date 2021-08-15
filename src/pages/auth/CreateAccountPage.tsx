@@ -16,10 +16,11 @@ import {
   IonSelectOption,
 } from "@ionic/react";
 import firebase from "firebase";
+import { options } from "ionicons/icons";
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-// IMPORT: FIREBASE APP & AUTH FROM DATA-SERVICES
+// import firebase client
 import { firebaseAuth, firebaseApp } from "../../data/data-services";
 
 // START OF COMPONENT
@@ -33,6 +34,7 @@ const CreateAccountPage: React.FC = () => {
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [country, setCountry] = useState("");
@@ -65,8 +67,10 @@ const CreateAccountPage: React.FC = () => {
         firstName,
         lastName,
         age,
+        credit: 1,
         email,
         username: email,
+        gender,
         role,
         country,
         island,
@@ -86,6 +90,74 @@ const CreateAccountPage: React.FC = () => {
           buttons: ["OK"],
         });
         return;
+      }
+    }
+    // TERNARY: USER COUNT INCREMENTOR
+    if (role === "Tutor") {
+      {
+        gender === "f"
+          ? firebaseApp
+              .firestore()
+              .collection("platform")
+              .doc("user-stats")
+              .update({
+                users: firebase.firestore.FieldValue.increment(1),
+                genderF: firebase.firestore.FieldValue.increment(1),
+                roleT: firebase.firestore.FieldValue.increment(1),
+              })
+          : firebaseApp
+              .firestore()
+              .collection("platform")
+              .doc("user-stats")
+              .update({
+                users: firebase.firestore.FieldValue.increment(1),
+                genderM: firebase.firestore.FieldValue.increment(1),
+                roleT: firebase.firestore.FieldValue.increment(1),
+              });
+      }
+    } else if (role === "Student") {
+      {
+        gender === "f"
+          ? firebaseApp
+              .firestore()
+              .collection("platform")
+              .doc("user-stats")
+              .update({
+                users: firebase.firestore.FieldValue.increment(1),
+                genderF: firebase.firestore.FieldValue.increment(1),
+                roleS: firebase.firestore.FieldValue.increment(1),
+              })
+          : firebaseApp
+              .firestore()
+              .collection("platform")
+              .doc("user-stats")
+              .update({
+                users: firebase.firestore.FieldValue.increment(1),
+                genderM: firebase.firestore.FieldValue.increment(1),
+                roleS: firebase.firestore.FieldValue.increment(1),
+              });
+      }
+    } else if (role === "Parent") {
+      {
+        gender === "f"
+          ? firebaseApp
+              .firestore()
+              .collection("platform")
+              .doc("user-stats")
+              .update({
+                users: firebase.firestore.FieldValue.increment(1),
+                genderF: firebase.firestore.FieldValue.increment(1),
+                roleP: firebase.firestore.FieldValue.increment(1),
+              })
+          : firebaseApp
+              .firestore()
+              .collection("platform")
+              .doc("user-stats")
+              .update({
+                users: firebase.firestore.FieldValue.increment(1),
+                genderM: firebase.firestore.FieldValue.increment(1),
+                roleP: firebase.firestore.FieldValue.increment(1),
+              });
       }
     }
   };
@@ -175,6 +247,16 @@ const CreateAccountPage: React.FC = () => {
         </IonItem>
 
         <IonItem>
+          <IonLabel> Gender</IonLabel>
+          <IonSelect
+            onIonChange={(event: any) => setGender(event.target.value)}
+          >
+            <IonSelectOption value="f">Female</IonSelectOption>
+            <IonSelectOption value="m">Male</IonSelectOption>
+          </IonSelect>
+        </IonItem>
+
+        <IonItem>
           <IonLabel position="fixed">email</IonLabel>
           <IonInput
             onIonChange={(event: any) => setEmail(event.target.value)}
@@ -219,7 +301,7 @@ const CreateAccountPage: React.FC = () => {
           <IonSelect
             onIonChange={(event: any) => setCountry(event.target.value)}
           >
-            <IonSelectOption value="AR">Aruba</IonSelectOption>
+            <IonSelectOption value="AR">ARUBA</IonSelectOption>
             <IonSelectOption value="BHS">Bahamas, The</IonSelectOption>
             <IonSelectOption value="BB">Barbados</IonSelectOption>
             <IonSelectOption value="JA">Jamaica</IonSelectOption>

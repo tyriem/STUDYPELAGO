@@ -9,8 +9,7 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 
-// [TODO]: #9 FUNC TO TIE PAYMENT WITH CREDIT [TODO]
-
+//TODO: #1 IMPLEMENT PAYPAL INTEGRATION | ISSUE: GLOBAL VAR RECOGNIZING
 //DECLARE: Global variable paypal
 declare var paypal: any;
 
@@ -70,7 +69,10 @@ function PaymentPage() {
         <IonToolbar>
           <IonTitle>ADD CREDIT</IonTitle>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/home"></IonBackButton>
+            <IonBackButton
+              defaultHref="/home"
+              color="secondary"
+            ></IonBackButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

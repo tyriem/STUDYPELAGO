@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { firebaseApp, firebaseAuth } from "../../data/data-services";
+import {
+  firebaseApp,
+  firebaseAuth,
+  getDataByTutorId,
+} from "../../data/data-services";
 import { getTutorData } from "../../data/data-services";
 import {
+  IonAvatar,
   IonBackButton,
   IonButton,
   IonButtons,
   IonCard,
+  IonChip,
   IonContent,
   IonFooter,
   IonHeader,
@@ -24,7 +30,7 @@ import {
 import "./Tab.css";
 import { Redirect, Route, useParams } from "react-router";
 import { PopupButton } from "react-calendly";
-import { home, calendar, pencil, compass, search } from "ionicons/icons";
+import { home, calendar, pencil, compass, search, star } from "ionicons/icons";
 
 // IMPORT TABS
 import TabT from "./TimelineTab";
@@ -97,15 +103,7 @@ function FindTutorTab() {
                       <div style={{ width: "10%" }}>
                         <IonImg src={id.imageData?.downloadUrl} />
                       </div>
-                      {/* [TODO] #11 IMPLEMENT REQUEST TIME PROGRAMMATICALLY [TODO]*/}
-                      <IonItem>
-                        <IonButton size="large">
-                          <PopupButton
-                            text="Request a Session with this Tutor"
-                            url="https://calendly.com/studypelago"
-                          />
-                        </IonButton>
-                      </IonItem>
+
                       <br></br>
                     </div>
                   );
@@ -115,6 +113,14 @@ function FindTutorTab() {
           ) : (
             <div>NO TUTORS FOUND</div>
           )}
+          <IonItem>
+            <IonButton size="large">
+              <PopupButton
+                text="Request a Session with Tutor: Tyrie Moss"
+                url="https://calendly.com/studypelago"
+              />
+            </IonButton>
+          </IonItem>
         </IonCard>
       </IonContent>
       <IonFooter>

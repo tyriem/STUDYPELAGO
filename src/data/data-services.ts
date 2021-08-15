@@ -38,11 +38,14 @@ initializeFirebase();
 // path where data is stored in firebase storage
 const STORAGE_FILE_PATH = "images/tutors";
 
-// main collection name
+// COLLECTION: TUTOR
 const COLLECTION_NAME_TUTOR = "tutor-listing";
 
-// main collection name
+// COLLECTION: COURSE
 const COLLECTION_NAME_COURSE = "course-listing";
+
+// COLLECTION: TIMELINE
+const COLLECTION_NAME_TIMELINE = "timeline-listing";
 
 /**
  * Saves the image to the database and returns either an error or information
@@ -111,7 +114,7 @@ export const saveImage = async (imageData: any) => {
 }
 
 
-// READ DATA
+// READ DATA: TUTOR
 // https://firebase.google.com/docs/firestore/query-data/get-data
 export const getTutorData = async () => {
 
@@ -138,8 +141,7 @@ export const getTutorData = async () => {
 };
 
 
-// READ DATA
-// https://firebase.google.com/docs/firestore/query-data/get-data
+// READ DATA: COURSE
 export const getCourseData = async () => {
 
 
@@ -152,6 +154,31 @@ export const getCourseData = async () => {
   const querySnapshot = await db.collection(COLLECTION_NAME_COURSE).get();
 
   // loop through ocuments
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+    results.push({
+      id: doc.id,
+      ...doc.data(), // <- JAVASCRIPT DESTRUCTURING
+    })
+  });
+  console.log(results);
+  return results;
+};
+
+// READ DATA: TIMELINE
+export const getTimelineData = async () => {
+
+
+  // get firebase firestore database
+  const db = firebase.firestore();
+
+  const results: any = [];
+  // --
+  // GET ALL THE DOCUMENTS
+  const querySnapshot = await db.collection(COLLECTION_NAME_TIMELINE).get();
+
+  // loop through documents
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
@@ -262,6 +289,57 @@ export const getDataByCourseId = (id: string) => {
     })
     .catch((error) => {
       console.log("Error getting document: ", error);
+    });
+
+
+}
+
+/**
+ * 
+ * @param timelineData 
+ * @returns 
+ */
+ export const updateTimeline = async (timelineData: any) => {
+  // get firebase firestore database
+  const db = firebase.firestore();
+
+  try {
+    const data = await db.collection(COLLECTION_NAME_TIMELINE).doc().set(timelineData)
+    return {
+      data,
+      error: null
+    }
+  } catch (error) {
+    return { data: null, error }
+  }
+}
+/**
+ * 
+ * @param id 
+ */
+export const getDataByTimelineId = (id: string) => {
+
+  // get firebase firestore database
+  const db = firebase.firestore();
+
+  // get a reference to a specific document
+  const docRef = db.collection(COLLECTION_NAME_TIMELINE).doc(id);
+  return docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        return {
+          id: doc.id,
+          ...doc.data()
+        }
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
     });
 
 
