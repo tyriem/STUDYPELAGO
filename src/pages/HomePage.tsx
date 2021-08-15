@@ -314,38 +314,41 @@ const HomePage: React.FC = () => {
             </IonCard>
           </IonModal>
         ) : null}
+
         {/* TIMELINE POST: STATS*/}
-        <IonGrid>
-          <IonRow>
-            <IonCol size="12" size-lg offset="0">
-              <IonCard color="secondary">
-                <IonCardHeader>
-                  <IonCardTitle>Studypelago Stats</IonCardTitle>
-                  <IonCardSubtitle>
-                    A quick look at our education platform
-                  </IonCardSubtitle>
-                </IonCardHeader>
+        <IonItem>
+          <IonGrid>
+            <IonRow>
+              <IonCol size="12" size-lg offset="0">
+                <IonCard color="secondary">
+                  <IonCardHeader>
+                    <IonCardTitle>Studypelago Stats</IonCardTitle>
+                    <IonCardSubtitle>
+                      A quick look at our education platform
+                    </IonCardSubtitle>
+                  </IonCardHeader>
 
-                <IonCardContent>
-                  {/* Bind the Bar Chart with the Data */}
-                  <Bar
-                    data={usersBarChartData}
-                    options={{ maintainAspectRatio: true }}
-                  />
+                  <IonCardContent>
+                    {/* Bind the Bar Chart with the Data */}
+                    <Bar
+                      data={usersBarChartData}
+                      options={{ maintainAspectRatio: true }}
+                    />
 
-                  <Doughnut
-                    data={roleDoughnutChartData}
-                    options={{ maintainAspectRatio: true }}
-                  />
-                  <Pie
-                    data={demographPieChartData}
-                    options={{ maintainAspectRatio: true }}
-                  />
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+                    <Doughnut
+                      data={roleDoughnutChartData}
+                      options={{ maintainAspectRatio: true }}
+                    />
+                    <Pie
+                      data={demographPieChartData}
+                      options={{ maintainAspectRatio: true }}
+                    />
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </IonItem>
 
         {/* TIMELINE POSTS */}
         {message ? (

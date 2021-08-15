@@ -10,6 +10,8 @@ import {
   IonItem,
   IonLabel,
   IonPage,
+  IonSlides,
+  IonSlide,
   IonTitle,
   // IMPORT: RENDER ALERTS
   useIonAlert,
@@ -27,14 +29,24 @@ import "../Page.css";
 // IMPORT: firebaseAuth from data modules
 import { firebaseAuth } from "../../data/firebase";
 
-// IMPORT: IMG - welcome
+// IMPORT: IMGs
 import welcomeImg from "../../assets/img/welcome.jpg";
+import logoImg from "../../assets/img/logo.gif";
+import platImg from "../../assets/img/platform.png";
+
 import { firebaseApp } from "../../data/data-services";
 
 const LoginPage: React.FC = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // Optional parameters to pass to the swiper instance.
+  // See http://idangero.us/swiper/api/ for valid options.
+  const slideOpts = {
+    initialSlide: 0,
+    speed: 400,
+  };
 
   // used to render platform specific alerts
   const [present] = useIonAlert();
@@ -70,25 +82,85 @@ const LoginPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>STUDYPELAGO</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding">
         <IonCard>
+          <IonSlides pager={true} options={slideOpts}>
+            <IonSlide>
+              <IonGrid>
+                <IonRow>
+                  <IonCol size="12" size-lg>
+                    <div>
+                      {/* ION-IMG: Render Image */}
+                      <IonImg src={logoImg}></IonImg>
+
+                      <h2>
+                        Welcome to <b>Studypelago</b>
+                      </h2>
+                      <p>
+                        Welcome to the the Caribbean's premier tutor services
+                        app!
+                      </p>
+                      <br></br>
+                    </div>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+            </IonSlide>
+            <IonSlide>
+              <IonGrid>
+                <IonRow>
+                  <IonCol size="12" size-lg>
+                    <div>
+                      {/* ION-IMG: Render Image */}
+                      <IonImg src={welcomeImg}></IonImg>
+
+                      <h2>A New Age Of Knowledge</h2>
+                      <p>
+                        We built this platform to serve the needs of our
+                        developing minds
+                      </p>
+                      <br></br>
+                    </div>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+            </IonSlide>
+            <IonSlide>
+              <IonGrid>
+                <IonRow>
+                  <IonCol size="12" size-md>
+                    <div>
+                      {/* ION-IMG: Render Image */}
+                      <IonImg src={platImg}></IonImg>
+
+                      <h2>Feature Rich, Security Focused</h2>
+                      <p>
+                        With a focus on security, we ensure that each stage of
+                        the journey is secured and monitored
+                      </p>
+                      <br></br>
+                    </div>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+            </IonSlide>
+          </IonSlides>
+        </IonCard>
+
+        <IonCard>
           <IonCardHeader>
-            <IonCardTitle>STUDYPELAGO</IonCardTitle>
-            <IonCardSubtitle>STUDYPELAGO CITIZENS: 700</IonCardSubtitle>
+            <IonCardTitle>Login</IonCardTitle>
           </IonCardHeader>
+
           <IonGrid>
             <IonRow>
-              <IonCol size="10" size-lg offset="1">
-                {/* ION-IMG: Render Image */}
-                <IonImg src={welcomeImg}></IonImg>
-              </IonCol>
+              <IonCol size="10" size-lg offset="1"></IonCol>
             </IonRow>
           </IonGrid>
           <IonCardContent>
-            Welcome to Studypelago, the Caribbean's premier tutor services app!
             {/* TODO: #15 WRAP INPUT IN FORM */}
             <IonItem>
               <IonLabel position="fixed">email</IonLabel>
