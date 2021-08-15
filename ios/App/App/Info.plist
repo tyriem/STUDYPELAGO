@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>IONIC - ENABLE CAMERA 3</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>IONIC - ENABLE CAMERA 2</string>
+	<key>NSCameraUsageDescription</key>
+	<string>IONIC - ENABLE CAMERA 1</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -27,18 +33,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string></string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string></string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
-	<key>To Take Photos</key>
-	<string></string>
-	<key>To Take Photos - Library Usage</key>
-	<string></string>
-	<key>To Take Photos - Privacy</key>
-	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

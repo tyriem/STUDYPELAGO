@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "STUDYPELAGO",
-	"webDir": "build",
-	"bundledWebRuntime": false
+  "appId": "io.ionic.studypelago",
+  "appName": "STUDYPELAGO",
+  "webDir": "build",
+  "bundledWebRuntime": false
 }
