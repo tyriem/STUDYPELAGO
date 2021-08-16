@@ -9,7 +9,6 @@ import {
   IonHeader,
   IonIcon,
   IonLabel,
-  IonModal,
   IonPage,
   IonRouterOutlet,
   IonRow,
@@ -35,9 +34,13 @@ import { home, calendar, pencil, compass, search } from "ionicons/icons";
 import { Redirect, Route } from "react-router";
 import { firebaseAuth, firebaseApp } from "../../data/data-services";
 
-const StudyIslandTab: React.FC = () => {
-  const [showModal, setShowModal] = useState(true);
+// IMPORT: CHAT COMPONENTS
+import ActiveChats from "../../components/imActiveChats.js";
+import ChatWindow from "../../components/imChatWindow.js";
+import Connect from "../../components/imConnect.js";
+import CreateChat from "../../components/imCreateChat.js";
 
+const StudyIslandTab: React.FC = () => {
   const [userProfile, setUserProfile] = useState<any>(null);
 
   // GET DOCUMENT "USERS"
@@ -77,7 +80,7 @@ const StudyIslandTab: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol size="1" size-lg offset="0.5"></IonCol>
-            <p></p>
+            {/* <p></p>
             <IonButton routerLink={"/study-session"} size="default">
               BGCSE MATH WITH TUTOR: TYRIE MOSS
             </IonButton>
@@ -96,7 +99,7 @@ const StudyIslandTab: React.FC = () => {
             <IonButton routerLink={"/study-session"} disabled={true}>
               BGCSE CHEMISTRY WITH TUTOR: JANE DOE
             </IonButton>
-            <p></p>
+            <p></p> */}
           </IonRow>
         </IonGrid>
       </IonContent>
