@@ -328,22 +328,37 @@ const HomePage: React.FC = () => {
                     </IonCardSubtitle>
                   </IonCardHeader>
 
-                  <IonCardContent>
-                    {/* Bind the Bar Chart with the Data */}
-                    <Bar
-                      data={usersBarChartData}
-                      options={{ maintainAspectRatio: true }}
-                    />
-
-                    <Doughnut
-                      data={roleDoughnutChartData}
-                      options={{ maintainAspectRatio: true }}
-                    />
-                    <Pie
-                      data={demographPieChartData}
-                      options={{ maintainAspectRatio: true }}
-                    />
-                  </IonCardContent>
+                  {/*-- TERNARY OP: ROLE === TUTOR |  STATS TUTOR / STATS S|P | --*/}
+                  {userProfile?.role === "Tutor" ? (
+                    <IonCardContent>
+                      {/* Bind the Bar Chart with the Data & Render */}
+                      <Bar
+                        data={usersBarChartData}
+                        options={{ maintainAspectRatio: true }}
+                      />
+                      {/* Bind the Doughnut Chart with the Data & Render */}
+                      <Doughnut
+                        data={roleDoughnutChartData}
+                        options={{ maintainAspectRatio: true }}
+                      />
+                      {/* Bind the Pie Chart with the Data & Render */}
+                      <Pie
+                        data={demographPieChartData}
+                        options={{ maintainAspectRatio: true }}
+                      />
+                    </IonCardContent>
+                  ) : (
+                    <IonCardContent>
+                      <Bar
+                        data={usersBarChartData}
+                        options={{ maintainAspectRatio: true }}
+                      />
+                      <Doughnut
+                        data={roleDoughnutChartData}
+                        options={{ maintainAspectRatio: true }}
+                      />
+                    </IonCardContent>
+                  )}
                 </IonCard>
               </IonCol>
             </IonRow>
