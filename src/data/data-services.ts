@@ -211,6 +211,28 @@ export const updateTutor = async (tutorData: any) => {
     return { data: null, error }
   }
 }
+
+/**
+ * 
+ * @param tutorReview 
+ * @returns 
+ */
+ export const updateReview = async (tutorReview : any) => {
+  // get firebase firestore database
+  const db = firebase.firestore();
+
+  try {
+    const data = await db.collection(COLLECTION_NAME_TUTOR).doc().set(tutorReview )
+    return {
+      data,
+      error: null
+    }
+  } catch (error) {
+    return { data: null, error }
+  }
+}
+
+
 /**
  * 
  * @param id 

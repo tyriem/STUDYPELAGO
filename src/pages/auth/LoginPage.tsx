@@ -30,7 +30,7 @@ import "../Page.css";
 import { firebaseAuth } from "../../data/firebase";
 
 // IMPORT: IMGs
-import welcomeImg from "../../assets/img/welcome.jpg";
+import welcomeImg from "../../assets/img/welcome.png";
 import logoImg from "../../assets/img/logo.gif";
 import platImg from "../../assets/img/platform.png";
 
@@ -94,7 +94,9 @@ const LoginPage: React.FC = () => {
                   <IonCol size="12" size-lg>
                     <div>
                       {/* ION-IMG: Render Image */}
-                      <IonImg src={logoImg}></IonImg>
+                      <div style={{ width: "50%", margin: "auto" }}>
+                        <IonImg src={logoImg}></IonImg>
+                      </div>
 
                       <h2>
                         Welcome to <b>Studypelago</b>
@@ -115,7 +117,9 @@ const LoginPage: React.FC = () => {
                   <IonCol size="12" size-lg>
                     <div>
                       {/* ION-IMG: Render Image */}
-                      <IonImg src={welcomeImg}></IonImg>
+                      <div style={{ width: "50%", margin: "auto" }}>
+                        <IonImg src={welcomeImg}></IonImg>
+                      </div>
 
                       <h2>A New Age Of Knowledge</h2>
                       <p>
@@ -131,10 +135,12 @@ const LoginPage: React.FC = () => {
             <IonSlide>
               <IonGrid>
                 <IonRow>
-                  <IonCol size="12" size-md>
+                  <IonCol size="12" size-lg>
                     <div>
                       {/* ION-IMG: Render Image */}
-                      <IonImg src={platImg}></IonImg>
+                      <div style={{ width: "50%", margin: "auto" }}>
+                        <IonImg src={platImg}></IonImg>
+                      </div>
 
                       <h2>Feature Rich, Security Focused</h2>
                       <p>

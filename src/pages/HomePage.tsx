@@ -231,7 +231,7 @@ const HomePage: React.FC = () => {
           <IonFab vertical="top" horizontal="end" slot="fixed">
             <IonFabButton href="/commerce/payment">
               {/* {history.replace("/commerce/payment")} */}
-              <IonIcon icon={cash} />
+              <h1>$</h1>
             </IonFabButton>
           </IonFab>
         ) : (
@@ -317,52 +317,54 @@ const HomePage: React.FC = () => {
 
         {/* TIMELINE POST: STATS*/}
         <IonItem>
-          <IonGrid>
-            <IonRow>
-              <IonCol size="12" size-lg offset="0">
-                <IonCard color="secondary">
-                  <IonCardHeader>
-                    <IonCardTitle>Studypelago Stats</IonCardTitle>
-                    <IonCardSubtitle>
-                      A quick look at our education platform
-                    </IonCardSubtitle>
-                  </IonCardHeader>
+          <div style={{ width: "100%", margin: "auto" }}>
+            <IonGrid>
+              <IonRow>
+                <IonCol size="12" offset="0">
+                  <IonCard color="secondary">
+                    <IonCardHeader>
+                      <IonCardTitle>Studypelago Stats</IonCardTitle>
+                      <IonCardSubtitle>
+                        A quick look at our education platform
+                      </IonCardSubtitle>
+                    </IonCardHeader>
 
-                  {/*-- TERNARY OP: ROLE === TUTOR |  STATS TUTOR / STATS S|P | --*/}
-                  {userProfile?.role === "Tutor" ? (
-                    <IonCardContent>
-                      {/* Bind the Bar Chart with the Data & Render */}
-                      <Bar
-                        data={usersBarChartData}
-                        options={{ maintainAspectRatio: true }}
-                      />
-                      {/* Bind the Doughnut Chart with the Data & Render */}
-                      <Doughnut
-                        data={roleDoughnutChartData}
-                        options={{ maintainAspectRatio: true }}
-                      />
-                      {/* Bind the Pie Chart with the Data & Render */}
-                      <Pie
-                        data={demographPieChartData}
-                        options={{ maintainAspectRatio: true }}
-                      />
-                    </IonCardContent>
-                  ) : (
-                    <IonCardContent>
-                      <Bar
-                        data={usersBarChartData}
-                        options={{ maintainAspectRatio: true }}
-                      />
-                      <Doughnut
-                        data={roleDoughnutChartData}
-                        options={{ maintainAspectRatio: true }}
-                      />
-                    </IonCardContent>
-                  )}
-                </IonCard>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
+                    {/*-- TERNARY OP: ROLE === TUTOR |  STATS TUTOR / STATS S|P | --*/}
+                    {userProfile?.role === "Tutor" ? (
+                      <IonCardContent>
+                        {/* Bind the Bar Chart with the Data & Render */}
+                        <Bar
+                          data={usersBarChartData}
+                          options={{ maintainAspectRatio: true }}
+                        />
+                        {/* Bind the Doughnut Chart with the Data & Render */}
+                        <Doughnut
+                          data={roleDoughnutChartData}
+                          options={{ maintainAspectRatio: true }}
+                        />
+                        {/* Bind the Pie Chart with the Data & Render */}
+                        <Pie
+                          data={demographPieChartData}
+                          options={{ maintainAspectRatio: true }}
+                        />
+                      </IonCardContent>
+                    ) : (
+                      <IonCardContent>
+                        <Bar
+                          data={usersBarChartData}
+                          options={{ maintainAspectRatio: true }}
+                        />
+                        <Doughnut
+                          data={roleDoughnutChartData}
+                          options={{ maintainAspectRatio: true }}
+                        />
+                      </IonCardContent>
+                    )}
+                  </IonCard>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </div>
         </IonItem>
 
         {/* TIMELINE POSTS */}
@@ -370,10 +372,10 @@ const HomePage: React.FC = () => {
           <IonItem>
             {message.map((id: any, index: string) => {
               return (
-                <div key={index}>
+                <div key={index} style={{ width: "100%", margin: "auto" }}>
                   <IonGrid>
                     <IonRow>
-                      <IonCol size="12" size-lg offset="0">
+                      <IonCol size="12" offset="0">
                         <IonCard color="secondary">
                           <IonCardHeader>
                             <IonThumbnail slot="start">
@@ -394,7 +396,7 @@ const HomePage: React.FC = () => {
                             </IonChip>
                           </IonCardHeader>
                           <IonCardContent>
-                            <div style={{ width: "50%" }}>
+                            <div style={{ width: "100%" }}>
                               <IonImg src={id.imageData?.downloadUrl} />
                             </div>
                             <div>
@@ -421,7 +423,7 @@ const HomePage: React.FC = () => {
         {/* <pre>{JSON.stringify(userProfile, null, 2)}</pre> */}
       </IonContent>
       {/*-- Footer --*/}
-      <IonFooter>
+      <IonFooter style={{ padding: 10 }}>
         <IonToolbar>
           {/* TABS BY ROLE */}
           {/* TERNARY OP: ROLE = TUTOR */}

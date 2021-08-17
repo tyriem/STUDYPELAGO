@@ -43,6 +43,9 @@ import CreateChat from "../../components/imCreateChat.js";
 const StudyIslandTab: React.FC = () => {
   const [userProfile, setUserProfile] = useState<any>(null);
 
+  // holds the messageText when creating new commments
+  const [reviewText, setReviewText] = useState<any>();
+
   // GET DOCUMENT "USERS"
   useEffect(() => {
     const loadUserProfile = async () => {
@@ -103,7 +106,7 @@ const StudyIslandTab: React.FC = () => {
           </IonRow>
         </IonGrid>
       </IonContent>
-      <IonFooter>
+      <IonFooter style={{ padding: 10 }}>
         <IonToolbar>
           {/* TABS BY ROLE */}
           {/* TERNARY OP: ROLE = TUTOR */}

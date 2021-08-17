@@ -127,7 +127,7 @@ const CourseCenterTab: React.FC = () => {
         ></iframe>
         <script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js"></script>
       </IonContent>
-      <IonFooter>
+      <IonFooter style={{ padding: 10 }}>
         <IonButton onClick={() => doAddStuff()}>UPLOAD ASSIGNMENT</IonButton>
         <IonButton color="danger" onClick={() => history.goBack()}>
           CANCEL
