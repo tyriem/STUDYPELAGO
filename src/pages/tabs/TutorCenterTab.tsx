@@ -115,19 +115,20 @@ const TutorCenterTab: React.FC = () => {
           <IonInput onIonChange={(event: any) => setName(event.target.value)} />
         </IonItem>
         <IonItem>
-          <IonLabel> SUBJECT LEVEL</IonLabel>
+          <IonLabel> TUTOR SUBJECT</IonLabel>
           <IonSelect
             onIonChange={(event: any) => setSubject(event.target.value)}
           >
-            <IonSelectOption value="Advanced Placement - Tutor">
+            <IonSelectOption value="Advanced Placement (AP)">
               AP
             </IonSelectOption>
-            <IonSelectOption value="Bahamas General Certificate of Secondary Education - Tutor">
+            <IonSelectOption value="Bahamas General Certificate of Secondary Education (BGCSE)">
               BGCSE
             </IonSelectOption>
-            <IonSelectOption value="Grade Level Assessment Test - Tutor">
+            <IonSelectOption value="Grade Level Assessment Test (GLAT)">
               GLAAT
             </IonSelectOption>
+            <IonSelectOption value="OTHER">OTHER</IonSelectOption>
           </IonSelect>
         </IonItem>
         <IonItem>

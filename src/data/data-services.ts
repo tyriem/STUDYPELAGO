@@ -1,5 +1,5 @@
 
-/// FIREBASE STUFF
+/// FIREBASE DATA SERVICES HANDLERS
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 import firebase from "firebase/app";
@@ -9,6 +9,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/functions";
 import "firebase/storage";
+import { stringify } from "querystring";
 
 // THIS HOLDS THE DATA
 const data = [];
@@ -40,6 +41,9 @@ const STORAGE_FILE_PATH = "images/tutors";
 
 // COLLECTION: TUTOR
 const COLLECTION_NAME_TUTOR = "tutor-listing";
+
+// COLLECTION: TUTOR
+const COLLECTION_NAME_REVIEW = "tutor-review";
 
 // COLLECTION: COURSE
 const COLLECTION_NAME_COURSE = "course-listing";
@@ -140,6 +144,31 @@ export const getTutorData = async () => {
   return results;
 };
 
+// READ DATA: TUTOR CONNECTED TO STUDY ISLAND
+export const getSpTutorData = async () => {
+
+
+  // get firebase firestore database
+  const db = firebase.firestore();
+
+  const results: any = [];
+  // --
+  // GET THE DOCUMENTS WHERE THE USER IS A MEMBER OF THE STUDY ISLAND 
+  const querySnapshot = await db.collection(COLLECTION_NAME_TUTOR).where("students", "array-contains", firebaseAuth.currentUser?.uid).get();
+
+  // loop through documents
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+    results.push({
+      id: doc.id,
+      ...doc.data(), // <- JAVASCRIPT DESTRUCTURING
+    })
+  });
+  console.log(results);
+  return results;
+};
+
 
 // READ DATA: COURSE
 export const getCourseData = async () => {
@@ -202,7 +231,7 @@ export const updateTutor = async (tutorData: any) => {
   const db = firebase.firestore();
 
   try {
-    const data = await db.collection(COLLECTION_NAME_TUTOR).doc().set(tutorData)
+    const data = await db.collection(COLLECTION_NAME_TUTOR).doc(firebaseAuth.currentUser?.uid).set(tutorData)
     return {
       data,
       error: null
@@ -222,7 +251,7 @@ export const updateTutor = async (tutorData: any) => {
   const db = firebase.firestore();
 
   try {
-    const data = await db.collection(COLLECTION_NAME_TUTOR).doc().set(tutorReview )
+    const data = await db.collection(COLLECTION_NAME_REVIEW).doc().set(tutorReview)
     return {
       data,
       error: null

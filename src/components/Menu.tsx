@@ -180,9 +180,6 @@ const Menu: React.FC = () => {
                 <IonLabel> Study Islands </IonLabel>
               </IonItem>
               <p></p>
-              <IonButton routerLink={"/study-session"} size="small">
-                BGCSE MATH WITH TUTOR: TYRIE MOSS
-              </IonButton>
               <p></p>
 
               <IonItem>
@@ -190,18 +187,11 @@ const Menu: React.FC = () => {
                 <IonLabel> Assignments </IonLabel>
               </IonItem>
               <p></p>
-              <IonButton routerLink={"/assignment"} size="small">
-                BGCSE MATH - Section 1 - MULTIPLE CHOICE
-              </IonButton>
               <p></p>
               <IonItem>
                 <IonIcon slot="start" icon={bookmarkOutline} />
                 <IonLabel> Reminders </IonLabel>
               </IonItem>
-              <h6>
-                Assignment: BGCSE MATH - Section 1 - MULTIPLE CHOICE is due
-                Monday
-              </h6>
             </IonList>
           ) : (
             <IonList id="labels-list">
@@ -211,8 +201,6 @@ const Menu: React.FC = () => {
                 <IonIcon slot="start" icon={bookmarkOutline} />
                 <IonLabel> Reminders </IonLabel>
               </IonItem>
-
-              <h6>Create Assignment: BGCSE MATH - MULTIPLE CHOICE TEST</h6>
             </IonList>
           )}
         </IonContent>

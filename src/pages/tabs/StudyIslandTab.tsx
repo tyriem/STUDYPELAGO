@@ -1,13 +1,20 @@
 import {
+  IonAvatar,
   IonBackButton,
   IonButton,
   IonButtons,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonChip,
   IonCol,
   IonContent,
   IonFooter,
   IonGrid,
   IonHeader,
   IonIcon,
+  IonImg,
+  IonItem,
   IonLabel,
   IonPage,
   IonRouterOutlet,
@@ -15,6 +22,8 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonTextarea,
+  IonThumbnail,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -32,22 +41,58 @@ import TabFT from "./FindTutorTab";
 import { useEffect, useState } from "react";
 import { home, calendar, pencil, compass, search } from "ionicons/icons";
 import { Redirect, Route } from "react-router";
-import { firebaseAuth, firebaseApp } from "../../data/data-services";
+
+// IMPORT DATA SERVICES
+import {
+  firebaseAuth,
+  firebaseApp,
+  updateTutor,
+  updateReview,
+  saveImage,
+  getSpTutorData,
+} from "../../data/data-services";
 
 // IMPORT: CHAT COMPONENTS
 import ActiveChats from "../../components/imActiveChats.js";
 import ChatWindow from "../../components/imChatWindow.js";
 import Connect from "../../components/imConnect.js";
 import CreateChat from "../../components/imCreateChat.js";
+import { PopupButton } from "react-calendly";
 
 const StudyIslandTab: React.FC = () => {
+  const [message, setMessage] = useState<any>();
+
   const [userProfile, setUserProfile] = useState<any>(null);
 
   // holds the messageText when creating new commments
   const [reviewText, setReviewText] = useState<any>();
 
+  // hold the comments data after retrieved from database
+  const [comments, setComments] = useState<any>();
+
+  // holds the messageText when creating new commments
+  const [messageText, setMessageText] = useState<any>();
+
+  const loadTutorReviews = async () => {
+    const dataReviews = await firebaseApp
+      .firestore()
+      .collection("tutor-review")
+      .doc()
+      .get();
+
+    // SET THE USER DATA FROM DOCUMENT
+    setComments(dataReviews.data());
+    console.log("THE REVIEW DATA IS: ", dataReviews.data);
+  };
+
   // GET DOCUMENT "USERS"
   useEffect(() => {
+    (async () => {
+      const msg = await getSpTutorData();
+      setMessage(msg);
+      console.log("The MSG IS:", msg);
+    })();
+
     const loadUserProfile = async () => {
       const userId = firebaseAuth.currentUser?.uid;
       console.log("User ID: ", userId);
@@ -64,7 +109,22 @@ const StudyIslandTab: React.FC = () => {
 
     console.log("get user profile information...");
     loadUserProfile();
+
+    loadTutorReviews();
   }, []);
+
+  // SAVE THE COMMENT TO THE LIST - save the information to database and
+  // reload the comments before you are done.
+  const doSaveComment = async () => {
+    const { data, error } = await updateReview({
+      product_id: 1, //params.productId, FIXME
+      message: messageText,
+      user_id: firebaseAuth.currentUser?.uid,
+    });
+    // clear out message
+    setMessageText("");
+    await loadTutorReviews();
+  };
 
   return (
     <IonPage>
@@ -80,33 +140,79 @@ const StudyIslandTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonGrid>
-          <IonRow>
-            <IonCol size="1" size-lg offset="0.5"></IonCol>
-            {/* <p></p>
-            <IonButton routerLink={"/study-session"} size="default">
-              BGCSE MATH WITH TUTOR: TYRIE MOSS
-            </IonButton>
-            <p></p>
-            <p></p>
-            <IonButton routerLink={"/study-session"} disabled={true}>
-              BGCSE ENGLISH WITH TUTOR: GAIL WOON
-            </IonButton>
-            <p></p>
-            <p></p>
-            <IonButton routerLink={"/study-session"} disabled={true}>
-              BGCSE PHYSICS WITH TUTOR: JOHN DOE
-            </IonButton>
-            <p></p>
-            <p></p>
-            <IonButton routerLink={"/study-session"} disabled={true}>
-              BGCSE CHEMISTRY WITH TUTOR: JANE DOE
-            </IonButton>
-            <p></p> */}
-          </IonRow>
-        </IonGrid>
+        {/* TUTOR LISTINGS */}
+        {message ? (
+          <div>
+            {message.map((id: any, index: string) => {
+              return (
+                <div key={index} style={{ width: "100%", margin: "auto" }}>
+                  <IonItem>
+                    <IonGrid>
+                      <IonRow>
+                        <IonCol size="12" offset="0">
+                          <IonCard color="secondary">
+                            <IonCardHeader>
+                              <IonThumbnail slot="start"></IonThumbnail>
+
+                              <IonCardTitle>
+                                <strong>{id.timelineTitle}</strong>
+                              </IonCardTitle>
+                              <IonChip>
+                                {/* ION-IMG: Render Image */}
+                                <IonAvatar>
+                                  <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
+                                </IonAvatar>
+
+                                <IonLabel>Tutor Name: {id.name}</IonLabel>
+                              </IonChip>
+                            </IonCardHeader>
+                            <div style={{ padding: 5 }}>
+                              <h2>Tutor Type: {id.subject}</h2>
+                            </div>
+                            <div style={{ width: "100%", margin: "auto" }}>
+                              <IonButton size="default">
+                                <PopupButton
+                                  text="Request a Session with this Tutor"
+                                  url="https://calendly.com/studypelago"
+                                />
+                              </IonButton>
+                            </div>
+                          </IonCard>
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
+
+                    <br></br>
+                  </IonItem>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div>NO TUTORS FOUND</div>
+        )}
+
+        {/* TUTOR REVIEWS */}
+        {comments ? (
+          comments?.map((c: any) => <CommentItem comment={c} key={c.id} />)
+        ) : (
+          <h2> NO TUTOR REVIEWS FOUND</h2>
+        )}
+        <IonTextarea
+          rows={3}
+          value={messageText}
+          style={{ background: "lightGrey" }}
+          onIonChange={(event: any) => setMessageText(event.target.value)}
+        />
+        <IonButton
+          size="small"
+          onClick={doSaveComment}
+          disabled={messageText?.length < 10}
+        >
+          SEND REVIEW
+        </IonButton>
       </IonContent>
-      <IonFooter style={{ padding: 10 }}>
+      <IonFooter style={{ padding: 1 }}>
         <IonToolbar>
           {/* TABS BY ROLE */}
           {/* TERNARY OP: ROLE = TUTOR */}
@@ -195,3 +301,24 @@ const StudyIslandTab: React.FC = () => {
 };
 
 export default StudyIslandTab;
+
+/**
+ * Simple helper functional component to render a comment entry
+ * @param param0
+ * @returns
+ */
+const CommentItem = ({ comment }: any) => {
+  var formatted = new Intl.DateTimeFormat("en-US", {
+    dateStyle: "full",
+    timeStyle: "short",
+  }).format(new Date(comment.inserted_at));
+  return (
+    <IonItem>
+      <IonLabel>
+        <div>{comment.message}</div>
+        <p>{comment.username}</p>
+        <p>{formatted}</p>
+      </IonLabel>
+    </IonItem>
+  );
+};

@@ -369,51 +369,60 @@ const HomePage: React.FC = () => {
 
         {/* TIMELINE POSTS */}
         {message ? (
-          <IonItem>
+          <div>
             {message.map((id: any, index: string) => {
               return (
-                <div key={index} style={{ width: "100%", margin: "auto" }}>
-                  <IonGrid>
-                    <IonRow>
-                      <IonCol size="12" offset="0">
-                        <IonCard color="secondary">
-                          <IonCardHeader>
-                            <IonThumbnail slot="start">
-                              {/* ION-IMG: Render Image */}
-                              <IonImg src={postImg}></IonImg>
-                            </IonThumbnail>
+                <div
+                  key={index}
+                  style={{
+                    width: "100%",
+                    margin: "auto",
+                    position: "relative",
+                  }}
+                >
+                  <IonItem>
+                    <IonGrid>
+                      <IonRow>
+                        <IonCol size="12" offset="0">
+                          <IonCard color="secondary">
+                            <IonCardHeader>
+                              <IonThumbnail slot="start">
+                                {/* ION-IMG: Render Image */}
+                                <IonImg src={postImg}></IonImg>
+                              </IonThumbnail>
 
-                            <IonCardTitle>
-                              <strong>{id.timelineTitle}</strong>
-                            </IonCardTitle>
-                            <IonChip>
-                              <IonAvatar>
-                                <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
-                              </IonAvatar>
-                              <IonLabel>
-                                Post by: {id.role} {id.name}
-                              </IonLabel>
-                            </IonChip>
-                          </IonCardHeader>
-                          <IonCardContent>
-                            <div style={{ width: "100%" }}>
-                              <IonImg src={id.imageData?.downloadUrl} />
-                            </div>
-                            <div>
-                              {" "}
-                              <h1>{id.timelineBody} </h1>
-                            </div>
+                              <IonCardTitle>
+                                <strong>{id.timelineTitle}</strong>
+                              </IonCardTitle>
+                              <IonChip>
+                                <IonAvatar>
+                                  <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
+                                </IonAvatar>
+                                <IonLabel>
+                                  Post by: {id.role} {id.name}
+                                </IonLabel>
+                              </IonChip>
+                            </IonCardHeader>
+                            <IonCardContent>
+                              <div style={{ width: "100%" }}>
+                                <IonImg src={id.imageData?.downloadUrl} />
+                              </div>
+                              <div>
+                                {" "}
+                                <h1>{id.timelineBody} </h1>
+                              </div>
 
-                            <br></br>
-                          </IonCardContent>
-                        </IonCard>
-                      </IonCol>
-                    </IonRow>
-                  </IonGrid>
+                              <br></br>
+                            </IonCardContent>
+                          </IonCard>
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
+                  </IonItem>
                 </div>
               );
             })}
-          </IonItem>
+          </div>
         ) : (
           <div>NO NEW TIMELINE POSTS</div>
         )}
@@ -423,7 +432,7 @@ const HomePage: React.FC = () => {
         {/* <pre>{JSON.stringify(userProfile, null, 2)}</pre> */}
       </IonContent>
       {/*-- Footer --*/}
-      <IonFooter style={{ padding: 10 }}>
+      <IonFooter style={{ padding: 1 }}>
         <IonToolbar>
           {/* TABS BY ROLE */}
           {/* TERNARY OP: ROLE = TUTOR */}

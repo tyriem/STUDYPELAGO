@@ -132,7 +132,7 @@ const App: React.FC = () => {
             <Route path="/tabs/study-island" exact={true} component={TabSI}>
               <TabSI />
             </Route>
-            <Route path="/tabs/find-tutor" exact={true} component={TabFT}>
+            <Route path="/tabs/find-tutor/" exact={true} component={TabFT}>
               <TabFT />
             </Route>
             <Route

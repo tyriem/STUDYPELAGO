@@ -34,10 +34,22 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import "./Tab.css";
+
+import "../Page.css";
+
+import firebase from "firebase";
+
 import { Redirect, Route, useParams } from "react-router";
 import { PopupButton } from "react-calendly";
-import { home, calendar, pencil, compass, search, star } from "ionicons/icons";
+import {
+  home,
+  calendar,
+  pencil,
+  compass,
+  search,
+  star,
+  idCardSharp,
+} from "ionicons/icons";
 
 // IMPORT TABS
 import TabT from "./TimelineTab";
@@ -46,29 +58,34 @@ import TabCC from "./CourseCenterTab";
 import TabSI from "./StudyIslandTab";
 import TabFT from "./FindTutorTab";
 
-import { updateTutor, updateReview, saveImage } from "../../data/data-services";
+// IMPORT DATA SERVICES
+import { updateTutor, saveImage } from "../../data/data-services";
 
 function FindTutorTab() {
+  const [studentArray, setStudentArray] = useState([]);
+  const [tutorId, setTutorId] = useState<any>(null);
+
   const [message, setMessage] = useState<any>();
   const params = useParams<any>();
   const [userProfile, setUserProfile] = useState<any>(null);
 
-  // hold the comments data after retrieved from database
-  const [comments, setComments] = useState<any>();
-
-  // holds the messageText when creating new commments
-  const [messageText, setMessageText] = useState<any>();
-
-  const loadTutorReviews = async () => {
-    const dataReviews = await firebaseApp
-      .firestore()
-      .collection("tutor-review")
-      .doc(params.productId)
-      .get();
-
-    // SET THE USER DATA FROM DOCUMENT
-    setComments(dataReviews.data());
-    console.log("THE REVIEW DATA IS: ", dataReviews.data);
+  const doAddStudent = async () => {
+    try {
+      firebaseApp
+        .firestore()
+        .collection("tutor-listing")
+        .doc(tutorId)
+        .update({
+          students: firebase.firestore.FieldValue.arrayUnion(
+            firebaseAuth.currentUser?.uid
+          ),
+        });
+    } catch (error: any) {
+      // error check for adding user profile...
+      if (error) {
+        return;
+      }
+    }
   };
 
   useEffect(() => {
@@ -77,8 +94,6 @@ function FindTutorTab() {
       setMessage(msg);
       console.log("The MSG IS:", msg);
     })();
-
-    loadTutorReviews();
 
     const loadUserProfile = async () => {
       const userId = firebaseAuth.currentUser?.uid;
@@ -96,21 +111,7 @@ function FindTutorTab() {
 
     console.log("get user profile information...");
     loadUserProfile();
-  }, [params.productId]);
-
-  // SAVE THE COMMENT TO THE LIST - save the information to database and
-  // reload the comments before you are done.
-  const doSaveComment = async () => {
-    const { data, error } = await updateReview({
-      product_id: params.productId,
-      message: messageText,
-      user_id: firebaseAuth.currentUser?.uid,
-    });
-    // clear out message
-    setMessageText("");
-
-    await loadTutorReviews();
-  };
+  }, []);
 
   return (
     <IonPage id="view-message-page">
@@ -128,11 +129,11 @@ function FindTutorTab() {
 
       <IonContent fullscreen>
         {message ? (
-          <IonItem>
-            <div>
-              {message.map((id: any, index: string) => {
-                return (
-                  <div key={index} style={{ width: "100%", margin: "auto" }}>
+          <div>
+            {message.map((id: any, index: string) => {
+              return (
+                <div key={index} style={{ width: "100%", margin: "auto" }}>
+                  <IonItem>
                     <IonGrid>
                       <IonRow>
                         <IonCol size="12" offset="0">
@@ -148,25 +149,44 @@ function FindTutorTab() {
                                 <IonAvatar>
                                   <img src="https://en.gravatar.com/userimage/37371217/fc40b48729e7d16a37d340e00c96618e.png" />
                                 </IonAvatar>
+
                                 <IonLabel>Tutor Name: {id.name}</IonLabel>
                               </IonChip>
+                              <IonChip>
+                                <IonLabel>
+                                  Tutor Rating: <IonIcon icon={star} />
+                                  <IonIcon icon={star} />
+                                  <IonIcon icon={star} />
+                                  <IonIcon icon={star} />
+                                </IonLabel>
+                              </IonChip>
+                              <IonLabel>Tutor ID: {id.id}</IonLabel>
                             </IonCardHeader>
-                            <div>
+                            <div style={{ padding: 5 }}>
                               <h2>Tutor Type: {id.subject}</h2>
                             </div>
-                            <div>
+                            <div style={{ padding: 5 }}>
                               <h3>Tutor Description: {id.description}</h3>
                             </div>
 
-                            <div style={{ width: "100%" }}>
+                            <div style={{ width: "100%", padding: 5 }}>
                               <IonImg src={id.imageData?.downloadUrl} />
                             </div>
                             <div style={{ width: "100%", margin: "auto" }}>
-                              <IonButton size="default">
-                                <PopupButton
-                                  text="Request a Session with this Tutor"
-                                  url="https://calendly.com/studypelago"
-                                />
+                              <IonButton
+                                size="default"
+                                onClick={() => {
+                                  doAddStudent();
+                                  setTutorId({ id });
+                                  console.log(id.id, tutorId);
+                                }}
+                              >
+                                <IonButton
+                                  routerLink={"/tabs/study-island"}
+                                  color="light"
+                                >
+                                  <h6>Start A Study Island With This Tutor</h6>
+                                </IonButton>
                               </IonButton>
                             </div>
                           </IonCard>
@@ -175,36 +195,16 @@ function FindTutorTab() {
                     </IonGrid>
 
                     <br></br>
-                  </div>
-                );
-              })}
-            </div>
-          </IonItem>
+                  </IonItem>
+                </div>
+              );
+            })}
+          </div>
         ) : (
           <div>NO TUTORS FOUND</div>
         )}
-
-        {comments ? (
-          comments?.map((c: any) => <CommentItem comment={c} key={c.id} />)
-        ) : (
-          <h2> NO TUTOR REVIEWS FOUND</h2>
-        )}
       </IonContent>
-      <IonFooter style={{ padding: 10 }}>
-        <IonTextarea
-          rows={3}
-          value={messageText}
-          style={{ background: "lightGrey" }}
-          onIonChange={(event: any) => setMessageText(event.target.value)}
-        />
-        <IonButton
-          size="small"
-          onClick={doSaveComment}
-          disabled={messageText?.length < 10}
-        >
-          SEND REVIEW
-        </IonButton>
-
+      <IonFooter style={{ padding: 1 }}>
         <IonToolbar>
           {/* TABS BY ROLE */}
           {/* TERNARY OP: ROLE = TUTOR */}
@@ -293,24 +293,3 @@ function FindTutorTab() {
 }
 
 export default FindTutorTab;
-
-/**
- * Simple helper functional component to render a comment entry
- * @param param0
- * @returns
- */
-const CommentItem = ({ comment }: any) => {
-  var formatted = new Intl.DateTimeFormat("en-US", {
-    dateStyle: "full",
-    timeStyle: "short",
-  }).format(new Date(comment.inserted_at));
-  return (
-    <IonItem>
-      <IonLabel>
-        <div>{comment.message}</div>
-        <p>{comment.username}</p>
-        <p>{formatted}</p>
-      </IonLabel>
-    </IonItem>
-  );
-};
